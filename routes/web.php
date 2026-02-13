@@ -22,6 +22,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/test-cloudinary', function () {
+    return env('CLOUDINARY_URL');
+});
+
+
 require __DIR__.'/auth.php';
 
 // Public Route
