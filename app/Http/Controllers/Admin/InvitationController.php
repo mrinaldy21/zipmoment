@@ -8,6 +8,8 @@ use App\Models\Invitation;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 
 class InvitationController extends Controller
 {
@@ -50,8 +52,12 @@ class InvitationController extends Controller
         $data['slug'] = Str::slug($request->title) . '-' . Str::random(5);
 
         if ($request->hasFile('cover_photo')) {
-            $data['cover_photo'] = $request->file('cover_photo')->store('covers', 'public');
+            $uploaded = Cloudinary::upload($request->file('cover_photo')->getRealPath(), [
+                'folder' => 'zipmoment/covers'
+            ]);
+            $data['cover_photo'] = $uploaded->getSecurePath();
         }
+
 
         $invitation = Invitation::create($data);
 
@@ -98,19 +104,29 @@ class InvitationController extends Controller
         // Keep slug same or regenerate if title changes? better keep same or make editable. I'll invoke simple update.
 
         if ($request->hasFile('cover_photo')) {
-            if ($invitation->cover_photo) {
-                Storage::disk('public')->delete($invitation->cover_photo);
-            }
-            $data['cover_photo'] = $request->file('cover_photo')->store('covers', 'public');
+            // tidak perlu delete storage lokal lagi
+
+            $uploaded = Cloudinary::upload($request->file('cover_photo')->getRealPath(), [
+                'folder' => 'zipmoment/covers'
+            ]);
+
+            $data['cover_photo'] = $uploaded->getSecurePath();
         }
+
 
         $invitation->update($data);
 
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $photo) {
-                $path = $photo->store('galleries', 'public');
-                $invitation->galleries()->create(['photo_path' => $path]);
+                $uploaded = Cloudinary::upload($photo->getRealPath(), [
+                    'folder' => 'zipmoment/galleries'
+                ]);
+
+                $invitation->galleries()->create([
+                    'photo_path' => $uploaded->getSecurePath()
+                ]);
             }
+
         }
 
         return redirect()->route('admin.invitations.index')->with('success', 'Invitation updated successfully.');
@@ -118,30 +134,27 @@ class InvitationController extends Controller
 
     public function destroy(Invitation $invitation)
     {
-        if ($invitation->cover_photo) {
-            Storage::disk('public')->delete($invitation->cover_photo);
-        }
+        // tidak perlu hapus file storage lokal lagi
 
         foreach ($invitation->galleries as $gallery) {
-            Storage::disk('public')->delete($gallery->photo_path);
             $gallery->delete();
         }
 
         $invitation->delete();
 
-        return redirect()->route('admin.invitations.index')->with('success', 'Invitation deleted successfully.');
+        return redirect()->route('admin.invitations.index')
+            ->with('success', 'Invitation deleted successfully.');
     }
 
     public function destroyGallery(Gallery $gallery)
     {
-        // Delete file from storage
-        if ($gallery->photo_path) {
-            Storage::disk('public')->delete($gallery->photo_path);
-        }
-
-        // Delete record from database
+        // sementara hanya hapus dari database
         $gallery->delete();
 
-        return response()->json(['success' => true, 'message' => 'Photo deleted successfully.']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Photo deleted successfully.'
+        ]);
     }
+
 }
