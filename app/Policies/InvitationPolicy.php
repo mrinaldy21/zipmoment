@@ -27,17 +27,20 @@ class InvitationPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user, Invitation $invitation): bool
     {
-        return $user->canCreateInvitation();
+        if ($user->isAdmin()) return true;
+
+        return $user->id === $invitation->user_id;
     }
+
 
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Invitation $invitation): bool
     {
-        return $user->isAdmin() || $user->id === $invitation->user_id;
+        return $user->isAdmin();
     }
 
     /**
@@ -45,7 +48,7 @@ class InvitationPolicy
      */
     public function delete(User $user, Invitation $invitation): bool
     {
-        return $user->isAdmin() || $user->id === $invitation->user_id;
+        return $user->isAdmin();
     }
 
     /**

@@ -21,8 +21,21 @@
 
                         <!-- Title -->
                         <div>
-                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Title</label>
+                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Title (e.g. The Wedding of Budi & Siti)</label>
                             <input type="text" name="title" value="{{ old('title', $invitation->title) }}" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                        </div>
+
+                        <!-- Assign to Client -->
+                        <div>
+                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Assign to Client</label>
+                            <select name="user_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                                @foreach($clients as $client)
+                                    <option value="{{ $client->id }}" {{ old('user_id', $invitation->user_id) == $client->id ? 'selected' : '' }}>
+                                        {{ $client->name }} ({{ $client->email }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -141,7 +154,7 @@
                                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-4" id="gallery-container">
                                     @foreach($invitation->galleries as $gallery)
                                         <div class="relative group" id="gallery-item-{{ $gallery->id }}">
-                                            <img src="{{ asset('storage/' . $gallery->photo_path) }}" alt="Gallery" class="w-full h-24 object-cover rounded shadow border dark:border-gray-700 transition group-hover:opacity-75">
+                                            <img src="{{ $gallery->photo_url }}" alt="Gallery" class="w-full h-24 object-cover rounded shadow border dark:border-gray-700 transition group-hover:opacity-75">
                                             <button type="button" 
                                                 onclick="deleteGalleryPhoto({{ $gallery->id }})"
                                                 class="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-700 focus:outline-none shadow-lg"

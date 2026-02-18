@@ -21,7 +21,21 @@
                         <!-- Title -->
                         <div>
                             <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Title (e.g. The Wedding of Budi & Siti)</label>
-                            <input type="text" name="title" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                            <input type="text" name="title" value="{{ old('title') }}" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                        </div>
+
+                        <!-- Assign to Client -->
+                        <div>
+                            <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Assign to Client</label>
+                            <select name="user_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                                <option value="">-- Select Client --</option>
+                                @foreach($clients as $client)
+                                    <option value="{{ $client->id }}" {{ old('user_id') == $client->id ? 'selected' : '' }}>
+                                        {{ $client->name }} ({{ $client->email }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

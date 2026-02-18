@@ -13,6 +13,8 @@
 </head>
 <body class="font-serif bg-[#fdfbf7] text-[#4a4a4a] antialiased">
     
+    @include('themes.partials.opening_screen', ['theme' => 'elegant'])
+    
     <!-- Hero Section -->
     <div class="relative min-h-screen flex flex-col justify-center items-center text-center p-6">
         @if($invitation->cover_photo_url)
@@ -22,6 +24,12 @@
         @endif
         
         <div class="relative z-10 w-full max-w-2xl mx-auto border-4 border-double border-[#d4af37] p-8 bg-white/90 shadow-xl">
+            @if(!empty($guest))
+                <div class="mb-6 pb-6 border-b border-gray-100">
+                    <p class="text-xs uppercase tracking-[0.2em] text-gray-500 mb-2">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                    <h2 class="text-3xl font-cursive text-[#2c2c2c]">{{ $guest }}</h2>
+                </div>
+            @endif
             <h3 class="text-xl uppercase tracking-[0.2em] mb-6 text-[#d4af37]">The Wedding Of</h3>
             <div class="space-y-2">
                 <h1 class="font-serif text-[clamp(1.8rem,5vw,3.2rem)] leading-tight text-[#d4af37]">
@@ -79,13 +87,9 @@
             </div>
             @endif
 
-            <!-- Guest Name Section -->
-            @if(request()->has('to'))
-            <div class="mt-12 pt-8 border-t border-gray-200">
-                <p class="text-xs uppercase tracking-wide mb-2 text-gray-500">Special Invitation For</p>
-                <h3 class="text-3xl font-cursive text-[#2c2c2c]">{{ request()->query('to') }}</h3>
-            </div>
-            @endif
+            <!-- Guestbook -->
+            @include('themes.partials.guestbook', ['theme' => 'elegant'])
+
         </div>
     </div>
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Invitation;
 use App\Models\Gallery;
+use App\Models\User;
 use Illuminate\Support\Str;
 use App\Services\CloudinaryService;
 
@@ -26,7 +27,8 @@ class InvitationController extends Controller
 
     public function create()
     {
-        return view('admin.invitations.create');
+        $clients = User::where('role', 'client')->get();
+        return view('admin.invitations.create', compact('clients'));
     }
 
     public function store(Request $request)
@@ -51,6 +53,7 @@ class InvitationController extends Controller
             'cover_photo' => 'nullable|image|max:2048',
             'template' => 'required|in:elegant,floral,modern',
             'gallery.*' => 'image|max:2048',
+            'user_id' => 'required|exists:users,id',
         ]);
 
         try {
@@ -64,7 +67,7 @@ class InvitationController extends Controller
                 );
             }
 
-            $data['user_id'] = auth()->id();
+            // user_id is now taken from request validation
             $invitation = Invitation::create($data);
 
             if ($request->hasFile('gallery')) {
@@ -86,7 +89,8 @@ class InvitationController extends Controller
 
     public function edit(Invitation $invitation)
     {
-        return view('admin.invitations.edit', compact('invitation'));
+        $clients = User::where('role', 'client')->get();
+        return view('admin.invitations.edit', compact('invitation', 'clients'));
     }
 
     public function update(Request $request, Invitation $invitation)
@@ -111,6 +115,7 @@ class InvitationController extends Controller
             'cover_photo' => 'nullable|image|max:2048',
             'template' => 'required|in:elegant,floral,modern',
             'gallery.*' => 'image|max:2048',
+            'user_id' => 'required|exists:users,id',
         ]);
 
         try {

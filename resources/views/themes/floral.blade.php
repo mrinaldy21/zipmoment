@@ -13,11 +13,19 @@
 </head>
 <body class="font-body bg-[#fff0f5] text-[#5d4037] antialiased">
 
+    @include('themes.partials.opening_screen', ['theme' => 'floral'])
+
     <!-- Hero Section -->
     <div class="min-h-screen flex flex-col justify-center items-center text-center p-6 bg-[url('https://images.unsplash.com/photo-1490750967868-58cb75063ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center">
         <div class="absolute inset-0 bg-white/70 backdrop-blur-[2px]"></div>
         
         <div class="relative z-10 w-full max-w-lg mx-auto bg-white/80 p-10 rounded-3xl shadow-2xl border-2 border-pink-200">
+            @if(!empty($guest))
+                <div class="mb-6 pb-6 border-b border-pink-100">
+                    <p class="text-xs uppercase tracking-widest text-pink-500 mb-1">Dear Special Guest</p>
+                    <h2 class="text-2xl font-cursive font-bold text-gray-800">{{ $guest }}</h2>
+                </div>
+            @endif
             <h3 class="text-sm uppercase tracking-widest mb-4 text-pink-500">The Wedding Celebration of</h3>
             <div class="space-y-1">
                 <h1 class="font-cursive text-[clamp(1.8rem,5vw,3.2rem)] leading-tight text-pink-600">{{ $invitation->groom_name }}</h1>
@@ -63,14 +71,9 @@
             </div>
             @endif
 
-            <!-- Guest -->
-            @if(request()->has('to'))
-            <div class="mt-8">
-                <p class="text-sm text-gray-500">Dear,</p>
-                <h3 class="text-2xl font-bold text-pink-700">{{ request()->query('to') }}</h3>
-                <p class="text-xs text-gray-500 mt-1">We would love to see you there!</p>
-            </div>
-            @endif
+            <!-- Guestbook -->
+            @include('themes.partials.guestbook', ['theme' => 'floral'])
+
         </div>
     </div>
 

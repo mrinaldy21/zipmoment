@@ -27,6 +27,7 @@ class Invitation extends Model
         'map_link',
         'cover_photo',
         'template',
+        'user_id',
     ];
 
     public function user()
@@ -37,6 +38,11 @@ class Invitation extends Model
     public function galleries()
     {
         return $this->hasMany(Gallery::class);
+    }
+
+    public function guests()
+    {
+        return $this->hasMany(Guest::class);
     }
 
     /**
@@ -97,12 +103,14 @@ class Invitation extends Model
         return implode("\n", $lines);
     }
 
-    /**
-     * Accessor for Cover Photo URL (Cloudinary or local)
-     */
     public function getCoverPhotoUrlAttribute()
     {
         if (!$this->cover_photo) return null;
         return str_starts_with($this->cover_photo, 'http') ? $this->cover_photo : asset('storage/' . $this->cover_photo);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(GuestMessage::class);
     }
 }

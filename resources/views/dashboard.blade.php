@@ -7,45 +7,45 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Stats Overview -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Your Account Plan</div>
-                    <div class="mt-1 text-2xl font-semibold text-gray-900 dark:text-white uppercase">
-                        {{ $stats['plan'] }}
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Invitations</div>
-                    <div class="mt-1 text-2xl font-semibold text-gray-900 dark:text-white">
-                        {{ $stats['total_invitations'] }}
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Status</div>
-                    <div class="mt-1 flex items-center">
-                        @if($stats['can_create'])
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Ready to Create</span>
-                        @else
-                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Limit Reached</span>
-                        @endif
-                    </div>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-8">
+                <div class="p-8 text-gray-900 dark:text-gray-100 text-center">
+                    <h1 class="text-3xl font-bold mb-4">Welcome, {{ auth()->user()->name }}!</h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        Your professional digital invitation management dashboard. Distribute your invitations and manage your guest lists with ease.
+                    </p>
                 </div>
             </div>
 
-            <!-- Quick Actions -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="text-lg font-medium">Manage Your Invitations</h3>
-                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                Create, edit, and share your digital wedding invitations.
-                            </p>
+            <!-- Dashboard Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- My Invitations -->
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg border-l-4 border-indigo-500 hover:shadow-md transition">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400">
+                                <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold uppercase tracking-widest text-indigo-500">Live</span>
                         </div>
-                        <a href="{{ route('dashboard.invitations.index') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                            Go to Invitations
+                        <h3 class="text-xl font-bold mb-2">My Invitations</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">View your assigned invitations and start managing your distribution.</p>
+                        <a href="{{ route('dashboard.invitations.index') }}" class="inline-flex items-center text-indigo-600 hover:text-indigo-900 font-bold transition">
+                            View Invitations
+                            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
                         </a>
+                    </div>
+                </div>
+
+                <!-- Assistance -->
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg border-l-4 border-emerald-500 hover:shadow-md transition text-center flex flex-col justify-center">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Need Support?</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 italic">"Transforming weddings into digital masterpieces."</p>
+                        <p class="text-sm text-gray-500">Contact ZipMoment Admin for any missing data or custom requests.</p>
                     </div>
                 </div>
             </div>

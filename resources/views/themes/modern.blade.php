@@ -13,6 +13,8 @@
 </head>
 <body class="font-body bg-black text-gray-200 antialiased">
     
+    @include('themes.partials.opening_screen', ['theme' => 'modern'])
+
     <!-- Hero Section -->
     <div class="relative min-h-screen flex flex-col justify-center items-center text-center p-6">
         @if($invitation->cover_photo_url)
@@ -23,6 +25,12 @@
         @endif
         
         <div class="relative z-10 w-full max-w-lg mx-auto">
+            @if(!empty($guest))
+                <div class="mb-8 border-l-4 border-white pl-4 py-2 text-left">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-1">To Our Guest</p>
+                    <h2 class="text-2xl font-bold tracking-tight text-white">{{ $guest }}</h2>
+                </div>
+            @endif
             <h3 class="text-xs uppercase tracking-[0.3em] mb-8 text-gray-400">We Are Getting Married</h3>
             
             <div class="flex flex-col items-center gap-6 mb-10">
@@ -44,6 +52,7 @@
             </div>
 
             <div class="border-t border-b border-gray-700 py-8 my-10">
+                <p class="text-lg md:text-xl font-thin mb-4 tracking-widest uppercase">The Wedding of</p>
                 <p class="font-light text-xl uppercase tracking-widest text-gray-300">
                     {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
                 </p>
@@ -75,13 +84,9 @@
             </div>
             @endif
 
-            <!-- Guest -->
-            @if(request()->has('to'))
-            <div class="mt-16 pt-8 border-t border-gray-800">
-                <p class="text-[10px] uppercase tracking-[0.2em] mb-2 text-gray-500">Intended For</p>
-                <h3 class="text-xl font-header text-white">{{ request()->query('to') }}</h3>
-            </div>
-            @endif
+            <!-- Guestbook -->
+            @include('themes.partials.guestbook', ['theme' => 'modern'])
+
         </div>
     </div>
 

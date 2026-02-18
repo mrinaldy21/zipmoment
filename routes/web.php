@@ -2,50 +2,52 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\InvitationController;
-use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\InvitationController as AdminInvitationController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Dashboard\InvitationController as DashboardInvitationController;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Http\Controllers\Dashboard\GuestController;
+use App\Http\Controllers\InvitationController;
 
 // Public Routes
 Route::get('/', function () {
-    return view('welcome'); // Future landing page
+    return view('welcome');
 });
 
-Route::get('/invitation/{invitation:slug}', [InvitationController::class, 'showPublic'])->name('invitation.show');
+Route::get('/i/{invitation:slug}', [InvitationController::class, 'show'])->name('invitation.show');
+Route::post('/invitation/{invitation}/guestbook', [GuestMessageController::class, 'store'])->name('guestbook.store');
 
-// Auth & Dashboard Routes (Customer)
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+// Client Routes
+Route::middleware(['auth', 'role:client'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
-        Route::resource('invitations', DashboardInvitationController::class);
-        Route::delete('gallery/{gallery}', [DashboardInvitationController::class, 'destroyGallery'])->name('gallery.destroy');
+        Route::resource('invitations', DashboardInvitationController::class)->only(['index', 'show']);
+        
+        // Guest Management for specific invitation
+        Route::get('invitations/{invitation}/guests', [GuestController::class, 'index'])->name('guests.index');
+        Route::post('invitations/{invitation}/guests', [GuestController::class, 'store'])->name('guests.store');
+        Route::delete('invitations/{invitation}/guests/{guest}', [GuestController::class, 'destroy'])->name('guests.destroy');
     });
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 // Admin Routes
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard'); // Future admin stats
+        return view('admin.dashboard');
     })->name('dashboard');
     
-    Route::resource('invitations', InvitationController::class);
-    Route::delete('gallery/{gallery}', [InvitationController::class, 'destroyGallery'])->name('gallery.destroy');
+    Route::resource('invitations', AdminInvitationController::class);
+    Route::resource('users', UserController::class);
+    Route::delete('gallery/{gallery}', [AdminInvitationController::class, 'destroyGallery'])->name('gallery.destroy');
 });
 
-Route::get('/test-upload', function (App\Services\CloudinaryService $cloudinary) {
-    if (!file_exists(public_path('alffa.jpg'))) {
-        return "Please place alffa.jpg in public folder for test.";
-    }
-    
-    $url = $cloudinary->upload(public_path('alffa.jpg'), 'test-production');
-    return $url ?: "Upload failed. Check logs.";
+// General Auth Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 require __DIR__.'/auth.php';
