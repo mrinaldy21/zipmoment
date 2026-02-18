@@ -57,7 +57,7 @@
                 <h3 class="font-cursive text-3xl text-pink-600 mb-4">Our Love Story</h3>
                 <div class="flex overflow-x-auto space-x-4 pb-4">
                     @foreach($invitation->galleries as $gallery)
-                        <img src="{{ asset('storage/' . $gallery->photo_path) }}" class="w-48 h-32 object-cover rounded-lg shadow-md flex-shrink-0">
+                        <img src="{{ $gallery->photo_url }}" class="w-48 h-32 object-cover rounded-lg shadow-md flex-shrink-0">
                     @endforeach
                 </div>
             </div>

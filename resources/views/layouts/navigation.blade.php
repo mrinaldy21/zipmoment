@@ -12,7 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.invitations.index')" :active="request()->routeIs('admin.invitations.*')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+
+                    @if(auth()->user()->isAdmin())
+                        <x-nav-link :href="route('admin.invitations.index')" :active="request()->is('admin*')">
+                            {{ __('Admin Panel') }}
+                        </x-nav-link>
+                    @endif
+                    
+                    <x-nav-link :href="route('dashboard.invitations.index')" :active="request()->routeIs('dashboard.invitations.*')">
                         {{ __('My Invitations') }}
                     </x-nav-link>
                 </div>

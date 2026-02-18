@@ -15,9 +15,9 @@
     
     <!-- Hero Section -->
     <div class="relative min-h-screen flex flex-col justify-center items-center text-center p-6">
-        @if($invitation->cover_photo)
+        @if($invitation->cover_photo_url)
             <div class="absolute inset-0 z-0 opacity-40">
-                <img src="{{ asset('storage/' . $invitation->cover_photo) }}" class="w-full h-full object-cover grayscale">
+                <img src="{{ $invitation->cover_photo_url }}" class="w-full h-full object-cover grayscale">
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black z-0"></div>
         @endif
@@ -69,7 +69,7 @@
                 <h3 class="font-header text-2xl text-white mb-8 border-b border-gray-800 pb-4 inline-block">Gallery</h3>
                 <div class="grid grid-cols-2 gap-2">
                     @foreach($invitation->galleries as $gallery)
-                        <img src="{{ asset('storage/' . $gallery->photo_path) }}" class="w-full h-40 object-cover grayscale hover:grayscale-0 transition duration-500 filter">
+                        <img src="{{ $gallery->photo_url }}" class="w-full h-40 object-cover grayscale hover:grayscale-0 transition duration-500 filter">
                     @endforeach
                 </div>
             </div>

@@ -29,6 +29,11 @@ class Invitation extends Model
         'template',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function galleries()
     {
         return $this->hasMany(Gallery::class);
@@ -90,5 +95,14 @@ class Invitation extends Model
         }
 
         return implode("\n", $lines);
+    }
+
+    /**
+     * Accessor for Cover Photo URL (Cloudinary or local)
+     */
+    public function getCoverPhotoUrlAttribute()
+    {
+        if (!$this->cover_photo) return null;
+        return str_starts_with($this->cover_photo, 'http') ? $this->cover_photo : asset('storage/' . $this->cover_photo);
     }
 }

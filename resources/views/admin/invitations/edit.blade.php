@@ -3,6 +3,11 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Edit Invitation') }}
         </h2>
+        @if(session('error'))
+            <div class="mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
+                {{ session('error') }}
+            </div>
+        @endif
     </x-slot>
 
     <div class="py-12">
@@ -108,9 +113,10 @@
                             <!-- Cover Photo -->
                             <div>
                                 <label class="block font-medium text-sm text-gray-700 dark:text-gray-300">Cover Photo</label>
-                                @if($invitation->cover_photo)
+                                @if($invitation->cover_photo_url)
                                     <div class="mb-2">
-                                        <img src="{{ asset('storage/' . $invitation->cover_photo) }}" alt="Cover" class="w-32 h-32 object-cover rounded shadow-md border dark:border-gray-700">
+                                        <img src="{{ $invitation->cover_photo_url }}" alt="Current Cover" class="w-32 h-32 object-cover rounded shadow-md border dark:border-gray-700">
+                                        <p class="text-xs text-gray-500 mt-1 italic">Current Cover</p>
                                     </div>
                                 @endif
                                 <input type="file" name="cover_photo" accept="image/*" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">

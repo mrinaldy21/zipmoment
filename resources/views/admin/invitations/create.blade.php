@@ -3,6 +3,11 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Create New Invitation') }}
         </h2>
+        @if(session('error'))
+            <div class="mt-4 p-4 bg-red-100 border-l-4 border-red-500 text-red-700">
+                {{ session('error') }}
+            </div>
+        @endif
     </x-slot>
 
     <div class="py-12">
