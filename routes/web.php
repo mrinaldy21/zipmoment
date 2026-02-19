@@ -7,8 +7,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Dashboard\InvitationController as DashboardInvitationController;
 use App\Http\Controllers\Dashboard\GuestController;
 use App\Http\Controllers\InvitationController;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 // Public Routes
 Route::get('/', function () {
@@ -50,20 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::get('/fix-admin', function () {
-
-    $admin = User::updateOrCreate(
-        ['email' => 'admin@zipmoment.com'],
-        [
-            'name' => 'Super Admin',
-            'password' => Hash::make('admin123'),
-            'role' => 'admin'
-        ]
-    );
-
-    return 'ADMIN READY: ' . $admin->email;
 });
 
 require __DIR__.'/auth.php';
