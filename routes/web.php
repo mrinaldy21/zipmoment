@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Dashboard\InvitationController as DashboardInvitationController;
 use App\Http\Controllers\Dashboard\GuestController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\GuestMessageController;
 
 // Public Routes
 Route::get('/', function () {
