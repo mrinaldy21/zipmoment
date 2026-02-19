@@ -39,7 +39,10 @@
 
     function openInvitation() {
         const screen = document.getElementById('opening-screen');
+        screen.style.transition = 'all 2s cubic-bezier(0.4, 0, 0.2, 1)';
         screen.style.opacity = '0';
+        screen.style.filter = 'blur(20px)';
+        screen.style.transform = 'scale(1.1)';
         screen.style.pointerEvents = 'none';
         
         setTimeout(() => {

@@ -8,6 +8,8 @@ use App\Http\Controllers\Dashboard\InvitationController as DashboardInvitationCo
 use App\Http\Controllers\Dashboard\GuestController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\GuestMessageController;
+use App\Http\Controllers\Admin\LoveStoryController;
+use App\Http\Controllers\Admin\EventController;
 
 // Public Routes
 Route::get('/', function () {
@@ -40,6 +42,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     })->name('dashboard');
     
     Route::resource('invitations', AdminInvitationController::class);
+    Route::resource('invitations.stories', LoveStoryController::class)->shallow();
+    Route::resource('invitations.events', EventController::class)->shallow();
     Route::resource('users', UserController::class);
     Route::delete('gallery/{gallery}', [AdminInvitationController::class, 'destroyGallery'])->name('gallery.destroy');
 });

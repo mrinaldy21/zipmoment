@@ -17,6 +17,17 @@ export default {
                 serif: ['Playfair Display', ...defaultTheme.fontFamily.serif],
                 cursive: ['Great Vibes', 'cursive'],
             },
+            safelist: [
+                {
+                    pattern: /bg-(red|green|blue|indigo|emerald|teal|yellow|gray)-(100|200|300|400|500|600|700|800|900)/,
+                },
+                {
+                    pattern: /hover:bg-(red|green|blue|indigo|emerald|teal|yellow|gray)-(100|200|300|400|500|600|700|800|900)/,
+                },
+                {
+                    pattern: /text-(red|green|blue|indigo|emerald|teal|yellow|gray)-(100|200|300|400|500|600|700|800|900)/,
+                },
+            ],
             colors: {
                 brand: {
                     gold: {
