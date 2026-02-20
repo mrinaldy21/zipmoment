@@ -13,11 +13,48 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        :root {
+            /* Premium Light Palette (Default) */
+            --bg-primary: #fdfbf7;
+            --bg-secondary: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-muted: rgba(26, 26, 26, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --flare-opacity: 0.04;
+            --noise-opacity: 0.03;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Luxury Dark Palette */
+                --bg-primary: #0b0b0c;
+                --bg-secondary: #111113;
+                --text-primary: #f5f5f5;
+                --text-muted: rgba(245, 245, 245, 0.4);
+                --glass-bg: rgba(255, 255, 255, 0.03);
+                --glass-border: rgba(255, 255, 255, 0.06);
+                --flare-opacity: 0.08;
+                --noise-opacity: 0.05;
+            }
+        }
+
         body { font-family: 'Inter', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-outfit { font-family: 'Outfit', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .lux-gradient { background: linear-gradient(135deg, #fff 0%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .glass { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid var(--glass-border); 
+        }
+        
+        .lux-gradient { 
+            background: linear-gradient(135deg, var(--text-primary) 0%, #facc15 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
         
         /* Cinematic Noise Textures */
         .grain-overlay {
@@ -31,7 +68,7 @@
             background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
             background-repeat: repeat;
             animation: grain 8s steps(10) infinite;
-            opacity: .05;
+            opacity: var(--noise-opacity);
             visibility: visible;
             z-index: 1000;
             pointer-events: none;
@@ -64,14 +101,14 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(251, 191, 36, var(--flare-opacity)) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(60px);
             pointer-events: none;
         }
     </style>
 </head>
-<body class="bg-[#030303] text-white selection:bg-amber-500 selection:text-black antialiased">
+<body class="bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-500 selection:bg-amber-500 selection:text-black antialiased">
     <!-- Cinematic Grain Overlay -->
     <div class="grain-overlay"></div>
 
@@ -85,9 +122,9 @@
                     class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
             </div>
             
-            <div class="hidden md:flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
+            <div class="hidden md:flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)]">
                 <a href="#features" class="hover:text-amber-500 transition-colors">Experience</a>
-                <a href="#pricing" class="hover:text-amber-500 transition-colors text-white">Investment</a>
+                <a href="#pricing" class="hover:text-amber-500 transition-colors text-[var(--text-primary)]">Investment</a>
                 <a href="#templates" class="hover:text-amber-500 transition-colors">Showcase</a>
             </div>
 
@@ -107,7 +144,7 @@
         <div class="absolute inset-0 z-0">
             <div class="lens-flare top-[-10%] left-[-10%] animate-pulse"></div>
             <div class="lens-flare bottom-[-10%] right-[-10%] opacity-50"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(251,191,36,0.03)_0%,_transparent_60%)]"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(251,191,36,var(--flare-opacity))_0%,_transparent_60%)]"></div>
         </div>
         
         <div class="max-w-7xl mx-auto px-6 md:px-8 relative z-10 text-center">
@@ -120,7 +157,7 @@
                 Platform Undangan Digital <br class="hidden md:block"> <span class="lux-gradient">MODERN, ELEGANT, MINIMALIST</span>
             </h1>
             
-            <p class="cinematic-reveal text-base md:text-2xl text-white/40 font-outfit font-light max-w-3xl mx-auto mb-12 md:mb-16 leading-relaxed italic px-4 md:px-0" style="animation-delay: 0.4s">
+            <p class="cinematic-reveal text-base md:text-2xl text-[var(--text-muted)] font-outfit font-light max-w-3xl mx-auto mb-12 md:mb-16 leading-relaxed italic px-4 md:px-0" style="animation-delay: 0.4s">
                 Undangan Digital dengan website modern, elegant dan minimalist. Mulai buat undanganmu bersama kami dengan berbagai tema yang tersedia.
             </p>
             
@@ -134,11 +171,11 @@
                     Start Your Luxury Story
                     <svg class="w-4 h-4 ml-3 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
-                <a href="#pricing" class="w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 glass text-white font-black uppercase tracking-[0.2em] text-[10px] md:text-xs rounded-full hover:bg-white/10 transition-all duration-500">Explore Collection</a>
+                <a href="#pricing" class="w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 glass text-[var(--text-primary)] font-black uppercase tracking-[0.2em] text-[10px] md:text-xs rounded-full hover:bg-white/10 transition-all duration-500">Explore Collection</a>
             </div>
 
             <!-- Enhanced Trust Bar -->
-            <div class="cinematic-reveal mt-32 pt-16 border-t border-white/5 flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-1000" style="animation-delay: 0.8s">
+            <div class="cinematic-reveal mt-32 pt-16 border-t border-[var(--glass-border)] flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-1000" style="animation-delay: 0.8s">
                 <div class="flex flex-col items-center">
                     <span class="text-4xl font-outfit font-black tracking-tighter mb-2">500+</span>
                     <span class="text-[9px] font-black uppercase tracking-[0.3em] text-amber-500/80">Premium Couples</span>
@@ -156,13 +193,13 @@
     </section>
 
     <!-- Differentiation Section -->
-    <section id="features" class="py-20 md:py-40 relative bg-[#030303]">
+    <section id="features" class="py-20 md:py-40 relative bg-[var(--bg-primary)]">
         <div class="max-w-7xl mx-auto px-6 md:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 md:gap-32 items-center">
                 <div class="space-y-8 md:space-y-12">
                     <div class="inline-block px-4 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] mb-4">Why ZipMoment?</div>
-                    <h2 class="text-4xl md:text-7xl font-serif italic font-black leading-tight tracking-tighter">Bukan Sekadar <br> <span class="text-white/20">Template Biasa.</span></h2>
-                    <p class="text-base md:text-xl text-white/40 font-outfit font-light leading-relaxed italic pr-4">"Undangan yang membuat tamu Anda berkata: ini mahal." Kami menciptakan karya seni digital yang menceritakan cinta Anda dengan cara yang paling eksklusif.</p>
+                    <h2 class="text-4xl md:text-7xl font-serif italic font-black leading-tight tracking-tighter">Bukan Sekadar <br> <span class="text-[var(--text-muted)]">Template Biasa.</span></h2>
+                    <p class="text-base md:text-xl text-[var(--text-muted)] font-outfit font-light leading-relaxed italic pr-4">"Undangan yang membuat tamu Anda berkata: ini mahal." Kami menciptakan karya seni digital yang menceritakan cinta Anda dengan cara yang paling eksklusif.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                         <div class="space-y-4 group">
@@ -214,47 +251,47 @@
                 
                 <!-- Step 1 -->
                 <div class="relative group text-center">
-                    <div class="w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center mx-auto mb-6 md:mb-8 bg-black group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
+                    <div class="w-16 h-16 rounded-full glass border border-[var(--glass-border)] flex items-center justify-center mx-auto mb-6 md:mb-8 bg-[var(--bg-secondary)] group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
                         <span class="text-amber-500 font-serif italic text-xl">01</span>
                     </div>
-                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white mb-3 md:mb-4">Konsultasi</h4>
-                    <p class="text-[10px] text-white/40 leading-relaxed font-outfit px-6 md:px-4">Diskusi intim melalui WhatsApp untuk memahami visi Anda.</p>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-[var(--text-primary)] mb-3 md:mb-4">Konsultasi</h4>
+                    <p class="text-[10px] text-[var(--text-muted)] leading-relaxed font-outfit px-6 md:px-4">Diskusi intim melalui WhatsApp untuk memahami visi Anda.</p>
                 </div>
 
                 <!-- Step 2 -->
                 <div class="relative group text-center">
-                    <div class="w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center mx-auto mb-6 md:mb-8 bg-black group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
+                    <div class="w-16 h-16 rounded-full glass border border-[var(--glass-border)] flex items-center justify-center mx-auto mb-6 md:mb-8 bg-[var(--bg-secondary)] group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
                         <span class="text-amber-500 font-serif italic text-xl">02</span>
                     </div>
-                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white mb-3 md:mb-4">Kirim Detail</h4>
-                    <p class="text-[10px] text-white/40 leading-relaxed font-outfit px-6 md:px-4">Lengkapi detail acara dan foto-foto moment terbaik Anda.</p>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-[var(--text-primary)] mb-3 md:mb-4">Kirim Detail</h4>
+                    <p class="text-[10px] text-[var(--text-muted)] leading-relaxed font-outfit px-6 md:px-4">Lengkapi detail acara dan foto-foto moment terbaik Anda.</p>
                 </div>
 
                 <!-- Step 3 -->
                 <div class="relative group text-center">
-                    <div class="w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center mx-auto mb-6 md:mb-8 bg-black group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
+                    <div class="w-16 h-16 rounded-full glass border border-[var(--glass-border)] flex items-center justify-center mx-auto mb-6 md:mb-8 bg-[var(--bg-secondary)] group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
                         <span class="text-amber-500 font-serif italic text-xl">03</span>
                     </div>
-                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white mb-3 md:mb-4">Proses Studio</h4>
-                    <p class="text-[10px] text-white/40 leading-relaxed font-outfit px-6 md:px-4">Sentuhan kurasi studio kami bekerja dalam 1x24 jam.</p>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-[var(--text-primary)] mb-3 md:mb-4">Proses Studio</h4>
+                    <p class="text-[10px] text-[var(--text-muted)] leading-relaxed font-outfit px-6 md:px-4">Sentuhan kurasi studio kami bekerja dalam 1x24 jam.</p>
                 </div>
 
                 <!-- Step 4 -->
                 <div class="relative group text-center">
-                    <div class="w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center mx-auto mb-6 md:mb-8 bg-black group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
+                    <div class="w-16 h-16 rounded-full glass border border-[var(--glass-border)] flex items-center justify-center mx-auto mb-6 md:mb-8 bg-[var(--bg-secondary)] group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
                         <span class="text-amber-500 font-serif italic text-xl">04</span>
                     </div>
-                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white mb-3 md:mb-4">Review & Revisi</h4>
-                    <p class="text-[10px] text-white/40 leading-relaxed font-outfit px-6 md:px-4">Pastikan setiap detail sudah sesuai dengan keinginan Anda.</p>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-[var(--text-primary)] mb-3 md:mb-4">Review & Revisi</h4>
+                    <p class="text-[10px] text-[var(--text-muted)] leading-relaxed font-outfit px-6 md:px-4">Pastikan setiap detail sudah sesuai dengan keinginan Anda.</p>
                 </div>
 
                 <!-- Step 5 -->
                 <div class="relative group text-center">
-                    <div class="w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center mx-auto mb-6 md:mb-8 bg-black group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
+                    <div class="w-16 h-16 rounded-full glass border border-[var(--glass-border)] flex items-center justify-center mx-auto mb-6 md:mb-8 bg-[var(--bg-secondary)] group-hover:border-amber-500/50 transition-colors duration-700 relative z-10">
                         <span class="text-amber-500 font-serif italic text-xl">05</span>
                     </div>
-                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white mb-3 md:mb-4">Siap Dibagikan</h4>
-                    <p class="text-[10px] text-white/40 leading-relaxed font-outfit px-6 md:px-4">Undangan digital eksklusif Anda siap mengesankan tamu.</p>
+                    <h4 class="text-[10px] md:text-xs font-black uppercase tracking-widest text-[var(--text-primary)] mb-3 md:mb-4">Siap Dibagikan</h4>
+                    <p class="text-[10px] text-[var(--text-muted)] leading-relaxed font-outfit px-6 md:px-4">Undangan digital eksklusif Anda siap mengesankan tamu.</p>
                 </div>
             </div>
         </div>
@@ -278,14 +315,15 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                             
                             <!-- Hover Overlay (Optimized for Mobile: Show more easily) -->
-                            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
+                            <a href="{{ route('invitation.show', 'demo-elegant') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
                                 <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
                                     <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                 </div>
                                 <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-white mt-4">View Cinematic Demo</span>
-                            </div>
+                            </a>
                         </div>
                         <div class="p-8 md:p-10 text-center">
+                            <div class="inline-block px-3 py-0.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[7px] font-black uppercase tracking-widest mb-3">STANDARD</div>
                             <span class="text-[7px] md:text-[8px] font-black tracking-[0.5em] text-amber-500 uppercase mb-2 block">Premium Tier</span>
                             <h3 class="text-xl md:text-2xl font-serif italic text-white italic">The Elegant Noir</h3>
                             <div class="mt-4 md:mt-6 flex items-center justify-center space-x-2 text-white/20">
@@ -306,14 +344,15 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                             
                             <!-- Hover Overlay -->
-                            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
+                            <a href="{{ route('invitation.show', 'demo-modern') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
                                 <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
                                     <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                 </div>
                                 <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-white mt-4">View Cinematic Demo</span>
-                            </div>
+                            </a>
                         </div>
                         <div class="p-8 md:p-10 text-center">
+                            <div class="inline-block px-3 py-0.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full text-[7px] font-black uppercase tracking-widest mb-3">EXCLUSIVE</div>
                             <span class="text-[7px] md:text-[8px] font-black tracking-[0.5em] text-indigo-400 uppercase mb-2 block">Exclusive Tier</span>
                             <h3 class="text-xl md:text-2xl font-serif italic text-white italic">Modern Majestic</h3>
                             <div class="mt-4 md:mt-6 flex items-center justify-center space-x-2 text-white/20">
@@ -334,14 +373,15 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                             
                             <!-- Hover Overlay -->
-                            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
+                            <a href="{{ route('invitation.show', 'demo-floral') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
                                 <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
                                     <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                 </div>
                                 <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-white mt-4">View Cinematic Demo</span>
-                            </div>
+                            </a>
                         </div>
                         <div class="p-8 md:p-10 text-center">
+                            <div class="inline-block px-3 py-0.5 bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-full text-[7px] font-black uppercase tracking-widest mb-3">PREMIUM</div>
                             <span class="text-[7px] md:text-[8px] font-black tracking-[0.5em] text-rose-400 uppercase mb-2 block">Signature Tier</span>
                             <h3 class="text-xl md:text-2xl font-serif italic text-white italic">Floral Romantisme</h3>
                             <div class="mt-4 md:mt-6 flex items-center justify-center space-x-2 text-white/20">
@@ -352,11 +392,92 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Theme 4: Minimalist (New - Standard) -->
+                <div class="group relative">
+                    <div class="absolute -inset-2 bg-gradient-to-b from-slate-500/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="relative glass rounded-[32px] md:rounded-[40px] overflow-hidden transition-all duration-700 group-hover:-translate-y-4">
+                        <div class="aspect-[3/4] overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1541250848049-b4f71413cc30?auto=format&fit=crop&w=800&q=80" alt="Minimalist Theme" class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-[4s] opacity-60">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            <a href="{{ route('invitation.show', 'demo-minimalist') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
+                                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                </div>
+                                <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-white mt-4">View Cinematic Demo</span>
+                            </a>
+                        </div>
+                        <div class="p-8 md:p-10 text-center">
+                            <div class="inline-block px-3 py-0.5 bg-slate-500/10 text-slate-400 border border-slate-500/20 rounded-full text-[7px] font-black uppercase tracking-widest mb-3">STANDARD</div>
+                            <span class="text-[7px] md:text-[8px] font-black tracking-[0.5em] text-slate-400 uppercase mb-2 block">Standard tier</span>
+                            <h3 class="text-xl md:text-2xl font-serif italic text-white italic">Pure Minimalist</h3>
+                            <div class="mt-4 md:mt-6 flex items-center justify-center space-x-2 text-white/20">
+                                <span class="h-[1px] w-6 md:w-8 bg-current"></span>
+                                <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest">Clean Architecture</span>
+                                <span class="h-[1px] w-6 md:w-8 bg-current"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme 5: Romantic (New - Premium) -->
+                <div class="group relative">
+                    <div class="absolute -inset-2 bg-gradient-to-b from-pink-500/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="relative glass rounded-[32px] md:rounded-[40px] overflow-hidden transition-all duration-700 group-hover:-translate-y-4">
+                        <div class="aspect-[3/4] overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Romantic Theme" class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-[4s] opacity-60">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            <a href="{{ route('invitation.show', 'demo-romantic') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
+                                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                </div>
+                                <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-white mt-4">View Cinematic Demo</span>
+                            </a>
+                        </div>
+                        <div class="p-8 md:p-10 text-center">
+                            <div class="inline-block px-3 py-0.5 bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-full text-[7px] font-black uppercase tracking-widest mb-3">PREMIUM</div>
+                            <span class="text-[7px] md:text-[8px] font-black tracking-[0.5em] text-rose-400 uppercase mb-2 block">Premium tier</span>
+                            <h3 class="text-xl md:text-2xl font-serif italic text-white italic">Romantic Dream</h3>
+                            <div class="mt-4 md:mt-6 flex items-center justify-center space-x-2 text-white/20">
+                                <span class="h-[1px] w-6 md:w-8 bg-current"></span>
+                                <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest">Timeless Emotion</span>
+                                <span class="h-[1px] w-6 md:w-8 bg-current"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme 6: Cinematic (New - Exclusive) -->
+                <div class="group relative">
+                    <div class="absolute -inset-2 bg-gradient-to-b from-amber-600/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="relative glass rounded-[32px] md:rounded-[40px] overflow-hidden transition-all duration-700 group-hover:-translate-y-4">
+                        <div class="aspect-[3/4] overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Cinematic Theme" class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-[4s] opacity-60">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            <a href="{{ route('invitation.show', 'demo-cinematic') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-400 backdrop-blur-sm bg-black/40">
+                                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                </div>
+                                <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] text-white mt-4">View Cinematic Demo</span>
+                            </a>
+                        </div>
+                        <div class="p-8 md:p-10 text-center">
+                            <div class="inline-block px-3 py-0.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[7px] font-black uppercase tracking-widest mb-3">EXCLUSIVE</div>
+                            <span class="text-[7px] md:text-[8px] font-black tracking-[0.5em] text-amber-500 uppercase mb-2 block">Exclusive tier</span>
+                            <h3 class="text-xl md:text-2xl font-serif italic text-white italic">Cinematic Noir</h3>
+                            <div class="mt-4 md:mt-6 flex items-center justify-center space-x-2 text-white/20">
+                                <span class="h-[1px] w-6 md:w-8 bg-current"></span>
+                                <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest">Visual Symphony</span>
+                                <span class="h-[1px] w-6 md:w-8 bg-current"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- EmotionalSELL -->
             <div class="mt-24 md:mt-40 text-center max-w-4xl mx-auto px-6">
-                <p class="text-xl md:text-3xl font-serif italic text-white/80 leading-relaxed">
+                <p class="text-xl md:text-3xl font-serif italic text-[var(--text-primary)] opacity-80 leading-relaxed">
                     "Setiap desain adalah pernyataan posisi Anda. Berikan kesan yang tidak akan pernah dilupakan tamu Anda sejak detik pertama mereka membuka undangan."
                 </p>
                 <div class="mt-10 flex flex-col items-center">
@@ -367,25 +488,25 @@
     </section>
 
     <!-- Strong Trust Section -->
-    <section id="experience" class="py-40 relative bg-[#050505]">
+    <section id="experience" class="py-40 relative bg-[var(--bg-primary)]">
         <div class="max-w-7xl mx-auto px-8">
             <!-- Behind the Studio Section -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-center mb-32 md:mb-60 pt-10 md:pt-20">
                 <div class="relative scroll-reveal px-2 md:px-0 text-center lg:text-left">
                     <div class="absolute -inset-10 md:-inset-20 bg-amber-500/5 blur-[80px] md:blur-[120px] rounded-full"></div>
-                    <div class="inline-block px-4 py-1 bg-white/5 border border-white/10 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-6 md:mb-8 text-white/40">Behind The Studio</div>
+                    <div class="inline-block px-4 py-1 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-6 md:mb-8 text-[var(--text-muted)]">Behind The Studio</div>
                     <h2 class="text-4xl md:text-6xl font-serif italic font-black mb-8 md:mb-10 tracking-tighter leading-[1.1]">The Heart of <br><span class="lux-gradient">Creative Craftsmanship.</span></h2>
-                    <p class="text-base md:text-lg text-white/60 font-outfit font-light leading-relaxed mb-8 md:mb-10 italic px-4 lg:px-0">
+                    <p class="text-base md:text-lg text-[var(--text-primary)] opacity-60 font-outfit font-light leading-relaxed mb-8 md:mb-10 italic px-4 lg:px-0">
                         "ZipMoment lahir dari keinginan menghadirkan undangan digital yang terasa elegan dan berkesan. Kami percaya bahwa setiap detail kecil adalah doa, dan setiap pixel adalah penghormatan bagi hari bahagia Anda."
                     </p>
                     <div class="flex flex-row items-center justify-center lg:justify-start space-x-8 md:space-x-12">
                         <div>
-                            <span class="block text-xl md:text-2xl font-serif italic text-white mb-1">Authentic</span>
-                            <span class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/20">Boutique Service</span>
+                            <span class="block text-xl md:text-2xl font-serif italic text-[var(--text-primary)] mb-1">Authentic</span>
+                            <span class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Boutique Service</span>
                         </div>
                         <div>
-                            <span class="block text-xl md:text-2xl font-serif italic text-white mb-1">Curated</span>
-                            <span class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/20">Intentional Design</span>
+                            <span class="block text-xl md:text-2xl font-serif italic text-[var(--text-primary)] mb-1">Curated</span>
+                            <span class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Intentional Design</span>
                         </div>
                     </div>
                 </div>
@@ -504,7 +625,7 @@
                 <div class="inline-block px-4 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-6">Investment Packages</div>
                 <h2 class="text-4xl md:text-7xl font-serif italic font-black mb-8 tracking-tighter leading-tight">Investasi Untuk<br> <span class="lux-gradient">Moment Tak Terlupakan.</span></h2>
                 <div class="flex flex-col items-center space-y-4 px-4">
-                    <p class="text-base md:text-xl text-white/40 font-outfit font-light italic">"Hanya untuk mereka yang menginginkan kesempurnaan di setiap pixel."</p>
+                    <p class="text-base md:text-xl text-[var(--text-muted)] font-outfit font-light italic">"Hanya untuk mereka yang menginginkan kesempurnaan di setiap pixel."</p>
                     <div class="flex items-center space-x-3 text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-amber-500/60 font-black text-center">
                         <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse flex-shrink-0"></span>
                         <span>Kami menerima jumlah pasangan terbatas setiap minggu.</span>
@@ -520,19 +641,19 @@
                     }
                 @endphp
                 <!-- Package 1: Basic -->
-                <div class="flex flex-col p-12 rounded-[50px] glass hover:bg-white/[0.05] transition-all duration-700 group relative overflow-hidden">
+                <div class="flex flex-col p-12 rounded-[50px] glass hover:bg-amber-500/[0.02] transition-all duration-700 group relative overflow-hidden">
                     <div class="mb-12 text-center">
-                        <span class="text-[9px] font-black uppercase tracking-[0.5em] text-white/30 mb-4 block">THE ESSENTIAL</span>
+                        <span class="text-[9px] font-black uppercase tracking-[0.5em] text-[var(--text-muted)] mb-4 block">THE ESSENTIAL</span>
                         <h3 class="text-3xl font-serif italic font-bold mb-6 tracking-tighter">Standard</h3>
                         <div class="flex flex-col items-center">
-                            <span class="text-xs text-white/10 line-through mb-2 tracking-widest">IDR 69,000</span>
+                            <span class="text-xs text-[var(--text-muted)] line-through mb-2 tracking-widest opacity-30">IDR 69,000</span>
                             <div class="flex items-baseline justify-center">
                                 <span class="text-5xl font-outfit font-black tracking-tighter italic">49<span class="text-lg font-light ml-1 opacity-40">k</span></span>
                             </div>
                         </div>
                     </div>
                     
-                    <ul class="space-y-6 mb-16 flex-1 text-[11px] font-outfit font-light tracking-wide text-white/60">
+                    <ul class="space-y-6 mb-16 flex-1 text-[11px] font-outfit font-light tracking-wide text-[var(--text-primary)] opacity-60">
                         <li class="flex items-center">
                             <svg class="w-4 h-4 mr-4 text-amber-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             Selection of Standard Theme
@@ -551,7 +672,7 @@
                         </li>
                     </ul>
 
-                    <a href="{{ waLink('Standard', '49k', $waNumber) }}" target="_blank" class="w-full py-5 text-center glass border-white/10 font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl hover:bg-white/10 transition-all duration-500">Pesan Essential</a>
+                    <a href="{{ waLink('Standard', '49k', $waNumber) }}" target="_blank" class="w-full py-5 text-center glass border-[var(--glass-border)] font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl hover:bg-amber-500/10 transition-all duration-500">Pesan Essential</a>
                 </div>
 
                 <!-- Package 2: Premium (Signature) -->
@@ -592,7 +713,7 @@
                 </div>
 
                 <!-- Package 3: Exclusive -->
-                <div class="flex flex-col p-8 md:p-12 rounded-[40px] md:rounded-[50px] glass hover:bg-white/[0.05] transition-all duration-700 group relative overflow-hidden">
+                <div class="flex flex-col p-8 md:p-12 rounded-[40px] md:rounded-[50px] glass hover:bg-indigo-500/[0.02] transition-all duration-700 group relative overflow-hidden">
                     <div class="mb-10 md:mb-12 text-center">
                         <span class="text-[8px] md:text-[9px] font-black uppercase tracking-[0.5em] text-indigo-400 mb-4 block">THE MAJESTY</span>
                         <h3 class="text-2xl md:text-3xl font-serif italic font-bold mb-4 md:mb-6 tracking-tighter italic">Majesty Kit</h3>
@@ -604,8 +725,8 @@
                         </div>
                     </div>
                     
-                    <ul class="space-y-4 md:space-y-6 mb-12 md:mb-16 flex-1 text-[10px] md:text-[11px] font-outfit font-light tracking-wide text-white/60">
-                        <li class="flex items-center text-indigo-100 font-black">
+                    <ul class="space-y-4 md:space-y-6 mb-12 md:mb-16 flex-1 text-[10px] md:text-[11px] font-outfit font-light tracking-wide text-[var(--text-primary)] opacity-60">
+                        <li class="flex items-center text-indigo-500 font-black">
                             <svg class="w-4 h-4 mr-3 md:mr-4 text-indigo-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                             CUSTOM DOMAIN (.com)
                         </li>
@@ -640,7 +761,7 @@
     </a>
 
     <!-- Footer -->
-    <footer class="py-12 md:py-20 border-t border-white/5 relative bg-black">
+    <footer class="py-12 md:py-20 border-t border-[var(--glass-border)] relative bg-[var(--bg-secondary)]">
         <div class="max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
             <div class="flex items-center space-x-2">
                 <img src="{{ asset('images/logo.png') }}" 
@@ -648,11 +769,11 @@
                     class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
             </div>
             
-            <p class="text-white/20 text-[8px] md:text-[10px] tracking-[0.2em] font-black uppercase text-center md:text-left">&copy; 2026 ZipMoment Digital Wedding Platform. All Rights Reserved.</p>
+            <p class="text-[var(--text-muted)] text-[8px] md:text-[10px] tracking-[0.2em] font-black uppercase text-center md:text-left">&copy; 2026 ZipMoment Digital Wedding Platform. All Rights Reserved.</p>
             
-            <div class="flex items-center space-x-6 text-white/40">
-                <a href="#" class="hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4.001 1.791 4.001 4c0 2.21-1.791 4-4.001 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="#" class="hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+            <div class="flex items-center space-x-6 text-[var(--text-muted)]">
+                <a href="#" class="hover:text-amber-500 transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4.001 1.791 4.001 4c0 2.21-1.791 4-4.001 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="#" class="hover:text-amber-500 transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
             </div>
         </div>
     </footer>

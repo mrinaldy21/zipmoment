@@ -130,12 +130,26 @@
                                         <!-- Elegant Card (Always Unlocked) -->
                                         <label class="relative cursor-pointer group" id="template-card-elegant">
                                             <input type="radio" name="template" value="elegant" class="peer sr-only" checked>
-                                            <div class="overflow-hidden rounded-2xl border-2 border-gray-100 bg-white peer-checked:border-indigo-600 peer-checked:ring-4 peer-checked:ring-indigo-100 transition-all hover:border-gray-300 shadow-sm group-hover:shadow-md">
+                                            <div class="template-box overflow-hidden rounded-2xl border-2 border-gray-100 bg-white peer-checked:border-indigo-600 peer-checked:ring-4 peer-checked:ring-indigo-100 transition-all hover:border-gray-300 shadow-sm group-hover:shadow-md">
                                                 <div class="h-24 bg-gradient-to-r from-amber-50 to-orange-50 flex items-center justify-center relative overflow-hidden">
                                                     <span class="text-amber-600 font-serif text-2xl italic tracking-tighter">Elegant</span>
                                                 </div>
                                                 <div class="p-4 flex items-center justify-between">
                                                     <span class="text-xs font-bold text-gray-700">Elegant Gold</span>
+                                                    <span class="text-[9px] px-2 py-0.5 bg-gray-100 text-gray-500 rounded-full font-black uppercase">Standard</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <!-- Minimalist Card (Standard) -->
+                                        <label class="relative cursor-pointer group" id="template-card-minimalist">
+                                            <input type="radio" name="template" value="minimalist" class="peer sr-only">
+                                            <div class="template-box overflow-hidden rounded-2xl border-2 border-gray-100 bg-white peer-checked:border-indigo-600 peer-checked:ring-4 peer-checked:ring-indigo-100 transition-all hover:border-gray-300 shadow-sm group-hover:shadow-md">
+                                                <div class="h-24 bg-gray-50 flex items-center justify-center relative overflow-hidden">
+                                                    <span class="text-gray-400 font-sans text-xl uppercase tracking-widest">Minimalist</span>
+                                                </div>
+                                                <div class="p-4 flex items-center justify-between">
+                                                    <span class="text-xs font-bold text-gray-700">Clean & Simple</span>
                                                     <span class="text-[9px] px-2 py-0.5 bg-gray-100 text-gray-500 rounded-full font-black uppercase">Standard</span>
                                                 </div>
                                             </div>
@@ -163,7 +177,29 @@
                                             </div>
                                         </label>
 
-                                        <!-- Modern Card (Exclusive) -->
+                                        <!-- Romantic Card (Premium/Exclusive) -->
+                                        <label class="relative cursor-pointer group" id="template-card-romantic">
+                                            <input type="radio" name="template" value="romantic" class="peer sr-only">
+                                            <div class="template-box overflow-hidden rounded-2xl border-2 border-gray-100 bg-white peer-checked:border-indigo-600 peer-checked:ring-4 peer-checked:ring-indigo-100 transition-all hover:border-gray-300 shadow-sm group-hover:shadow-md relative">
+                                                <div class="h-24 bg-gradient-to-r from-red-50 to-pink-50 flex items-center justify-center relative overflow-hidden">
+                                                    <span class="text-pink-600 font-serif text-2xl italic tracking-tighter">Romantic</span>
+                                                </div>
+                                                <div class="p-4 flex items-center justify-between">
+                                                    <span class="text-xs font-bold text-gray-700">Sweet Love</span>
+                                                    <span class="text-[9px] px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full font-black uppercase flex items-center">
+                                                        <svg class="w-2 h-2 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                        Premium
+                                                    </span>
+                                                </div>
+                                                <!-- Overlay Lock -->
+                                                <div class="lock-overlay absolute inset-0 bg-white/60 flex flex-col items-center justify-center backdrop-blur-[1px] opacity-0 pointer-events-none transition-opacity">
+                                                    <svg class="w-8 h-8 text-pink-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2V7a5 5 0 00-5-5zM7 7a3 3 0 016 0v2H7V7z"/></svg>
+                                                    <span class="text-[8px] font-black uppercase text-pink-400 mt-2 tracking-widest">Premium Only</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <!-- Modern Card (Exclusive Only) -->
                                         <label class="relative cursor-pointer group" id="template-card-modern">
                                             <input type="radio" name="template" value="modern" class="peer sr-only">
                                             <div class="template-box overflow-hidden rounded-2xl border-2 border-gray-100 bg-white peer-checked:border-indigo-600 peer-checked:ring-4 peer-checked:ring-indigo-100 transition-all hover:border-gray-300 shadow-sm group-hover:shadow-md relative">
@@ -181,6 +217,37 @@
                                                 <div class="lock-overlay absolute inset-0 bg-slate-900/60 flex flex-col items-center justify-center backdrop-blur-[1px] opacity-0 pointer-events-none transition-opacity">
                                                     <svg class="w-8 h-8 text-indigo-400/50" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2V7a5 5 0 00-5-5zM7 7a3 3 0 016 0v2H7V7z"/></svg>
                                                     <span class="text-[8px] font-black uppercase text-indigo-400/50 mt-2 tracking-widest">Exclusive Only</span>
+                                                </div>
+                                            </div>
+                                        </label>
+
+                                        <!-- Cinematic Card (Exclusive Only) -->
+                                        <label class="relative cursor-pointer group" id="template-card-cinematic">
+                                            <input type="radio" name="template" value="cinematic" class="peer sr-only">
+                                            <div class="template-box overflow-hidden rounded-2xl border-2 border-gray-100 bg-white peer-checked:border-indigo-600 peer-checked:ring-4 peer-checked:ring-indigo-100 transition-all hover:border-gray-300 shadow-sm group-hover:shadow-md relative">
+                                                <div class="h-24 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 flex flex-col items-center justify-center relative overflow-hidden">
+                                                    <!-- Subtle Animated Glow -->
+                                                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.15),transparent_70%)] animate-pulse"></div>
+                                                    <span class="text-white font-black text-xl uppercase tracking-[0.2em] relative z-10 drop-shadow-2xl">CINEMATIC</span>
+                                                    <span class="text-indigo-400 font-bold text-[8px] uppercase tracking-widest mt-1 opacity-80 relative z-10 transition-all group-hover:tracking-[0.4em]">Extreme Luxury</span>
+                                                </div>
+                                                <div class="p-4 flex items-center justify-between border-t border-gray-50 bg-slate-50/30">
+                                                    <div class="flex flex-col">
+                                                        <span class="text-xs font-black text-slate-800 tracking-tight">CineMaster™</span>
+                                                        <span class="text-[8px] text-indigo-600 font-bold uppercase tracking-tighter">Smooth Animation</span>
+                                                    </div>
+                                                    <span class="text-[9px] px-2 py-1 bg-indigo-600 text-white rounded-lg font-black uppercase flex items-center shadow-lg shadow-indigo-500/20">
+                                                        <svg class="w-2.5 h-2.5 mr-1 text-white animate-spin-slow" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2V7a5 5 0 00-5-5zM7 7a3 3 0 016 0v2H7V7z"/></svg>
+                                                        Elite Choice
+                                                    </span>
+                                                </div>
+                                                <!-- Overlay Lock -->
+                                                <div class="lock-overlay absolute inset-0 bg-slate-900/80 flex flex-col items-center justify-center backdrop-blur-[2px] opacity-0 pointer-events-none transition-all duration-300">
+                                                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-2 border border-white/20">
+                                                        <svg class="w-6 h-6 text-indigo-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2V7a5 5 0 00-5-5zM7 7a3 3 0 016 0v2H7V7z"/></svg>
+                                                    </div>
+                                                    <span class="text-[9px] font-black uppercase text-white tracking-[0.2em]">Unlock Elite</span>
+                                                    <span class="text-[7px] font-bold uppercase text-indigo-400 mt-1">Exclusive Tier Required</span>
                                                 </div>
                                             </div>
                                         </label>
@@ -362,8 +429,11 @@
         const packageType = checkedPackage.value;
         const templates = {
             elegant: ['basic', 'premium', 'exclusive'],
+            minimalist: ['basic', 'premium', 'exclusive'],
             floral: ['premium', 'exclusive'],
-            modern: ['exclusive']
+            romantic: ['premium', 'exclusive'],
+            modern: ['exclusive'],
+            cinematic: ['exclusive']
         };
 
         Object.keys(templates).forEach(t => {

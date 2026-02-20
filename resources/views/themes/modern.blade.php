@@ -8,13 +8,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
+        :root {
+            --bg-modern: #0a0a0a;
+            --text-modern: #e5e5e5;
+            --border-modern: #333;
+            --accent-modern: #888;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-modern: #050505;
+                --text-modern: #f5f5f5;
+                --border-modern: #1a1a1a;
+                --accent-modern: #555;
+            }
+        }
+
         .font-header { font-family: 'Cinzel', serif; }
         .font-body { font-family: 'Montserrat', sans-serif; }
         
-        body { background-color: #0a0a0a; color: #e5e5e5; }
+        body { background-color: var(--bg-modern); color: var(--text-modern); }
         
-        .modern-border { border-color: #333; }
-        .modern-accent { color: #888; }
+        .modern-border { border-color: var(--border-modern); }
+        .modern-accent { color: var(--accent-modern); }
         
         .timeline-line {
             position: absolute;
@@ -22,7 +38,7 @@
             top: 0;
             bottom: 0;
             width: 1px;
-            background: #333;
+            background: var(--border-modern);
             transform: translateX(-50%);
         }
 
@@ -38,7 +54,7 @@
         }
     </style>
 </head>
-<body class="font-body antialiased overflow-x-hidden">
+<body class="font-body antialiased transition-colors duration-500 overflow-x-hidden">
     
     @include('themes.partials.opening_screen', ['theme' => 'modern'])
     @include('themes.partials.music_player', ['theme' => 'modern'])
@@ -54,9 +70,9 @@
         <div class="relative z-10 animate__animated animate__fadeIn px-4">
             <h3 class="text-[10px] uppercase tracking-[0.5em] mb-6 md:mb-8 text-gray-400">Union of Two Souls</h3>
             <div class="space-y-4 mb-10 md:mb-12">
-                <h1 class="font-header text-4xl md:text-8xl text-white tracking-widest uppercase break-words">{{ $invitation->groom_name }}</h1>
-                <p class="text-xl md:text-2xl font-thin text-gray-500 italic">&</p>
-                <h1 class="font-header text-4xl md:text-8xl text-white tracking-widest uppercase break-words">{{ $invitation->bride_name }}</h1>
+                <h1 class="font-serif text-4xl md:text-8xl text-white uppercase break-words">{{ $invitation->groom_name }}</h1>
+                <p class="text-xl md:text-6xl font-thin text-gray-500 italic">&</p>
+                <h1 class="font-serif text-4xl md:text-8xl text-white uppercase break-words">{{ $invitation->bride_name }}</h1>
             </div>
             
             <div class="flex justify-center mb-10 md:mb-12">
@@ -229,8 +245,9 @@
         <div class="mt-12 pt-12 border-t border-gray-900 flex flex-col items-center group/wm">
            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-700 mb-4">Architected by</span>
            <div class="flex items-center space-x-3 grayscale opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-1000 cursor-pointer">
-               <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center font-black text-black text-lg italic shadow-2xl">Z</div>
-               <span class="text-lg font-black tracking-tighter uppercase italic text-white">ZipMoment</span>
+               <img src="{{ asset('images/logo.png') }}" 
+                    alt="ZipMoment Logo"
+                    class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
            </div>
            <p class="text-[9px] text-gray-600 mt-4 font-light tracking-widest uppercase">Experience the peak of digital storytelling at <span class="text-white">zipmoment.id</span></p>
         </div>
@@ -251,5 +268,6 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
     </script>
+    @include('themes.partials.template_cta')
 </body>
 </html>

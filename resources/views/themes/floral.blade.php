@@ -8,14 +8,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
+        :root {
+            --bg-floral: #fffafb;
+            --text-floral: #374151; /* gray-700 */
+            --border-floral: #fce7f3;
+            --muted-floral: #9ca3af; /* gray-400 */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-floral: #1a0b10;
+                --text-floral: #fce7f3;
+                --border-floral: rgba(219, 39, 119, 0.2);
+                --muted-floral: #db2777;
+            }
+        }
+
         .font-cursive { font-family: 'Dancing Script', cursive; }
         .font-body { font-family: 'Nunito', sans-serif; }
         
         .floral-text { color: #db2777; }
         .floral-bg { background-color: #db2777; }
-        .floral-border { border-color: #fce7f3; }
+        .floral-border { border-color: var(--border-floral); }
         
-        .bg-floral { background-color: #fffafb; }
+        .bg-floral { background-color: var(--bg-floral); }
 
         .timeline-dot {
             width: 12px;
@@ -40,7 +56,7 @@
         }
     </style>
 </head>
-<body class="font-body bg-floral text-gray-700 antialiased overflow-x-hidden">
+<body class="font-body bg-floral text-[var(--text-floral)] transition-colors duration-500 antialiased overflow-x-hidden">
     
     @include('themes.partials.opening_screen', ['theme' => 'floral'])
     @include('themes.partials.music_player', ['theme' => 'floral'])
@@ -48,7 +64,7 @@
     <!-- Hero Section -->
     <section class="relative min-h-screen flex flex-col justify-center items-center text-center p-6 overflow-hidden">
         <div class="absolute inset-0 z-0">
-             <img src="https://images.unsplash.com/photo-1522673607200-1648482ce486?auto=format&fit=crop&w=2000&q=80" class="w-full h-full object-cover blur-[1px]">
+             <img src="{{ $invitation->cover_photo_url }}" class="w-full h-full object-cover blur-[1px]">
              <div class="absolute inset-0 bg-white/60"></div>
         </div>
         
@@ -223,8 +239,9 @@
         <div class="mt-8 pt-8 border-t border-pink-50 flex flex-col items-center group/wm">
            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-pink-200 mb-2">Beautifully Designed with</span>
            <div class="flex items-center space-x-2 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-700 cursor-pointer">
-               <div class="w-8 h-8 bg-pink-500 rounded-lg flex items-center justify-center font-black text-white text-md italic shadow-xl shadow-pink-500/10">Z</div>
-               <span class="text-sm font-black tracking-tighter uppercase italic text-pink-600">ZipMoment</span>
+               <img src="{{ asset('images/logo.png') }}" 
+                    alt="ZipMoment Logo"
+                    class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
            </div>
            <p class="text-[9px] text-pink-300 mt-2 font-medium italic">Create your dream invitation at <span class="text-pink-500 font-bold">zipmoment.id</span></p>
         </div>
@@ -245,5 +262,6 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
     </script>
+    @include('themes.partials.template_cta')
 </body>
 </html>

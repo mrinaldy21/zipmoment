@@ -8,21 +8,29 @@
 
     <div class="relative z-10 w-full max-w-lg mx-auto">
         <h3 class="text-lg md:text-xl uppercase tracking-[0.3em] text-gray-500 mb-4">The Wedding Of</h3>
-        <h1 class="font-serif text-4xl md:text-6xl mb-8 {{ $theme === 'elegant' ? 'text-[#d4af37]' : ($theme === 'floral' ? 'text-pink-600' : 'text-white') }}">
+        <h1 class="font-serif text-4xl md:text-6xl mb-8 
+            {{ $theme === 'elegant' || $theme === 'cinematic' ? 'text-amber-500' : 
+               ($theme === 'floral' || $theme === 'romantic' ? 'text-rose-600' : 
+               'text-[var(--text-primary)]') }}">
             {{ $invitation->groom_name }} & {{ $invitation->bride_name }}
         </h1>
 
         <div class="mb-8">
             <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Kepada Yth.</p>
             <p class="text-sm uppercase tracking-widest text-gray-500 mb-1">Bapak/Ibu/Saudara/i:</p>
-            <h2 class="text-2xl font-bold {{ $theme === 'elegant' ? 'text-[#2c2c2c]' : ($theme === 'floral' ? 'text-gray-800' : 'text-gray-300') }}">
+            <h2 class="text-2xl font-bold 
+                {{ $theme === 'elegant' ? 'text-[#2c2c2c]' : 
+                   ($theme === 'floral' || $theme === 'romantic' ? 'text-rose-900' : 
+                   ($theme === 'cinematic' ? 'text-white' : 'text-gray-800')) }}">
                 {{ $guest ?? 'Tamu Undangan' }}
             </h2>
             <p class="text-sm text-gray-500 mt-2">Di Tempat</p>
         </div>
 
         <button onclick="openInvitation()" class="inline-block px-8 py-3 rounded-full font-bold uppercase tracking-widest transition transform hover:scale-105 active:scale-95 shadow-lg
-            {{ $theme === 'elegant' ? 'bg-[#d4af37] text-white hover:bg-[#b8952e]' : ($theme === 'floral' ? 'bg-pink-500 text-white hover:bg-pink-600' : 'bg-white text-black hover:bg-gray-200') }}">
+            {{ $theme === 'elegant' || $theme === 'cinematic' ? 'bg-amber-500 text-white hover:bg-amber-600' : 
+               ($theme === 'floral' || $theme === 'romantic' ? 'bg-rose-500 text-white hover:bg-rose-600' : 
+               'bg-black text-white hover:bg-gray-800') }}">
             Buka Undangan
         </button>
     </div>

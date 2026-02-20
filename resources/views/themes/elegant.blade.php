@@ -8,6 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
+        :root {
+            --bg-elegant: #fdfbf7;
+            --text-elegant: #3a3a3a;
+            --border-elegant: #e2e8f0;
+            --glass-elegant: rgba(255, 255, 255, 0.7);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-elegant: #0f0f11;
+                --text-elegant: #dfdfdf;
+                --border-elegant: rgba(255, 255, 255, 0.1);
+                --glass-elegant: rgba(0, 0, 0, 0.5);
+            }
+        }
+
         .font-cursive { font-family: 'Great Vibes', cursive; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-sans { font-family: 'Montserrat', sans-serif; }
@@ -16,7 +32,7 @@
         .gold-bg { background-color: #d4af37; }
         .gold-border { border-color: #d4af37; }
         
-        .bg-cream { background-color: #fdfbf7; }
+        .bg-cream { background-color: var(--bg-elegant); }
         
         .timeline-line::after {
             content: '';
@@ -25,7 +41,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #e2e8f0;
+            background: var(--border-elegant);
             transform: translateX(-50%);
         }
 
@@ -48,7 +64,7 @@
         }
     </style>
 </head>
-<body class="font-sans bg-cream text-[#3a3a3a] antialiased overflow-x-hidden">
+<body class="font-sans bg-cream text-[var(--text-elegant)] transition-colors duration-500 antialiased overflow-x-hidden">
     
     @include('themes.partials.opening_screen', ['theme' => 'elegant'])
     @include('themes.partials.music_player', ['theme' => 'elegant'])
@@ -64,8 +80,11 @@
         
         <div class="relative z-10 animate__animated animate__fadeInUp px-4">
             <h3 class="text-white text-base md:text-xl uppercase tracking-[0.4em] mb-4">The Wedding Of</h3>
-            <h1 class="gold-text mb-8 text-4xl md:text-[3.5rem] break-words" style="font-family:'Great Vibes', cursive;">
-                {{ $invitation->groom_name }} & {{ $invitation->bride_name }}
+            <h1 class="gold-text mb-8 text-4xl md:text-[3.5rem] break-words" style="font-family:Playfair Display;">
+                {{ $invitation->groom_name }} & <br>
+            </h1>
+            <h1 class="gold-text mb-8 text-4xl md:text-[3.5rem] break-words" style="font-family:Playfair Display;">
+                {{ $invitation->bride_name }}
             </h1>
             <div class="max-w-md mx-auto h-[1px] bg-white/50 mb-8"></div>
             <p class="text-white text-lg md:text-2xl font-light tracking-widest uppercase mb-12">
@@ -268,8 +287,9 @@
                 <!-- Main Watermark (Removable) -->
                 <span class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300 mb-2">Designed with</span>
                 <div class="flex items-center space-x-2 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-700 cursor-pointer">
-                    <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center font-black text-black text-md italic shadow-xl shadow-amber-500/10">Z</div>
-                    <span class="text-sm font-black tracking-tighter uppercase italic text-black">ZipMoment</span>
+                    <img src="{{ asset('images/logo.png') }}" 
+                    alt="ZipMoment Logo"
+                    class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
                 </div>
                 <p class="text-[9px] text-gray-400 mt-2 font-medium">Create your exclusive invitation at <span class="text-amber-600 font-bold">zipmoment.id</span></p>
              </div>
@@ -292,6 +312,7 @@
         </div>
     </footer>
 
+    @include('themes.partials.template_cta')
     <script>
         // Scroll Reveal Implementation
         const observerOptions = {

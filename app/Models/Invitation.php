@@ -198,10 +198,15 @@ class Invitation extends Model
 
     public function canUseTheme($themeName)
     {
-        if ($this->isPremium()) return true;
+        if ($this->isExclusive()) return true;
+
+        if ($this->isPremium()) {
+            // Premium (not exclusive) can NOT use cinematic or modern
+            return !in_array($themeName, ['cinematic', 'modern']);
+        }
         
         // Basic can only use basic themes
-        return in_array($themeName, ['elegant']); // Example: only elegant is free
+        return in_array($themeName, ['elegant', 'minimalist']);
     }
 
     public function canAddGalleryPhoto()

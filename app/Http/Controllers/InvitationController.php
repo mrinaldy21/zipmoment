@@ -21,15 +21,25 @@ class InvitationController extends Controller
         
         $view = 'themes.' . $invitation->template;
         
-        // Template Tier Enforcement: Basic only gets Elegant (Standard)
-        if ($invitation->isBasic() && in_array($invitation->template, ['floral', 'modern'])) {
-            $view = 'themes.elegant';
+        // Template Tier Enforcement
+        if ($invitation->isBasic()) {
+            // Basic can only use elegant or minimalist
+            if (!in_array($invitation->template, ['elegant', 'minimalist'])) {
+                $view = 'themes.elegant';
+            }
+        } elseif ($invitation->isPremium() && !$invitation->isExclusive()) {
+            // Premium can use all except cinematic and modern (Exclusive)
+            if (in_array($invitation->template, ['cinematic', 'modern'])) {
+                $view = 'themes.elegant';
+            }
         }
 
         if (!view()->exists($view)) {
             $view = 'themes.elegant';
         }
 
-        return view($view, compact('invitation', 'guest'));
+        $isDemo = str_starts_with($invitation->slug, 'demo-');
+
+        return view($view, compact('invitation', 'guest', 'isDemo'));
     }
 }
