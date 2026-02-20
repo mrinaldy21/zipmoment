@@ -22,18 +22,14 @@
     </style>
 </head>
 <body class="bg-[#050505] text-white selection:bg-amber-500 selection:text-black">
-    
-    <!-- Top Scarcity Banner -->
-    <div class="bg-amber-500 text-black text-[10px] font-black uppercase tracking-[0.3em] py-2 text-center relative z-[60]">
-        Setiap minggu kami hanya menerima 10 pasangan agar kualitas tetap terjaga
-    </div>
-
     <!-- Navigation -->
     <nav class="fixed w-full z-50 border-b border-white/5 glass top-7">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center font-black text-black text-xl italic shadow-lg shadow-amber-500/20">Z</div>
-                <span class="text-xl font-black tracking-tighter uppercase italic">ZipMoment</span>
+                <!-- LOGO PNG -->
+                <img src="{{ asset('images/logo.png') }}" 
+                    alt="ZipMoment Logo"
+                    class="h-10 object-contain rounded-xl shadow-lg">
             </div>
             
             <div class="hidden md:flex items-center space-x-10 text-[11px] font-black uppercase tracking-[0.2em] text-white/60">
@@ -65,16 +61,16 @@
                 Premium Digital Wedding Studio
             </div>
             <h1 class="text-5xl md:text-8xl font-serif italic font-black leading-[1.1] mb-8 tracking-tighter">
-                Undangan Digital Premium <br> <span class="bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent">Terlihat Mahal & Elegan</span>
+                Platform Undangan Digital <br> <span class="bg-gradient-to-r from-amber-200 to-amber-500 bg-clip-text text-transparent">MODERN, ELEGANT, MINIMALIST</span>
             </h1>
             <p class="text-lg md:text-xl text-white/40 font-medium max-w-2xl mx-auto mb-12 leading-relaxed italic">
-                Bukan sekadar link undangan, tapi pengalaman berkesan untuk tamu Anda. Desain sinematik, transisi mewah, dan kualitas tanpa kompromi.
+                Undangan Digital dengan website modern, elegant dan minimalist. Mulai buat undanganmu bersama kami dengan berbagai tema yang tersedia.
             </p>
             
             <div class="flex flex-col md:flex-row items-center justify-center gap-6">
                 @php
-                    $waNumber = "628123456789";
-                    $heroMsg = rawurlencode("Halo ZipMoment, saya tertarik membuat undangan digital yang mahal & elegan.\n\nMohon info detailnya.");
+                    $waNumber = "6287896443386";
+                    $heroMsg = rawurlencode("Halo ZipMoment, saya tertarik membuat undangan digital yang modern, elegant dan minimalist.\n\nMohon info detailnya.");
                     $waUrl = "https://wa.me/{$waNumber}?text={$heroMsg}";
                 @endphp
                 <a href="{{ $waUrl }}" target="_blank" class="w-full md:w-auto px-10 py-5 bg-amber-500 text-black font-black uppercase tracking-widest rounded-full hover:scale-105 transition-all shadow-2xl shadow-amber-500/20 flex items-center justify-center">
