@@ -229,6 +229,11 @@
            <p class="text-[9px] text-pink-300 mt-2 font-medium italic">Create your dream invitation at <span class="text-pink-500 font-bold">zipmoment.id</span></p>
         </div>
         @endif
+
+        <!-- Boutique Signature (Permanent) -->
+        <div class="mt-8 opacity-20 hover:opacity-100 transition-opacity duration-1000">
+           <span class="text-[8px] font-cursive italic tracking-[0.2em] text-pink-400">Experience by ZipMoment</span>
+        </div>
         <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-4">&copy; {{ date('Y') }} ZipMoment Invitations</p>
     </footer>
 

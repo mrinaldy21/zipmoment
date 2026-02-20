@@ -260,6 +260,7 @@
         <div class="flex flex-col items-center space-y-4">
              @if($invitation->is_watermark_enabled)
              <div class="mt-8 pt-8 border-t border-gray-100 flex flex-col items-center group/wm">
+                <!-- Main Watermark (Removable) -->
                 <span class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300 mb-2">Designed with</span>
                 <div class="flex items-center space-x-2 grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-700 cursor-pointer">
                     <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center font-black text-black text-md italic shadow-xl shadow-amber-500/10">Z</div>
@@ -268,6 +269,12 @@
                 <p class="text-[9px] text-gray-400 mt-2 font-medium">Create your exclusive invitation at <span class="text-amber-600 font-bold">zipmoment.id</span></p>
              </div>
              @endif
+             
+             <!-- Boutique Signature (Permanent) -->
+             <div class="mt-8 opacity-20 hover:opacity-100 transition-opacity duration-1000">
+                <span class="text-[8px] font-serif italic tracking-[0.2em] text-gray-400">Experience by ZipMoment</span>
+             </div>
+
              <div class="flex space-x-4 text-gray-300">
                 @if($invitation->contact_phone)
                     <a href="tel:{{ $invitation->contact_phone }}" class="hover:gold-text transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1c-5.078 0-9.263-4.185-10.27-9.27L3 5z"></path></svg></a>
