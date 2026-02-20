@@ -79,10 +79,10 @@
     <nav class="fixed w-full z-[60] top-0 py-6 transition-all duration-500">
         <div class="max-w-7xl mx-auto px-8 flex items-center justify-between">
             <div class="flex items-center space-x-3 group cursor-pointer">
-                <div class="w-10 h-10 bg-gradient-to-tr from-amber-500 to-amber-200 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform duration-500">
-                    <span class="text-black font-black text-xl italic">Z</span>
-                </div>
-                <span class="text-2xl font-outfit font-black tracking-tighter uppercase italic tracking-[0.1em]">ZipMoment</span>
+                <!-- LOGO PNG -->
+                <img src="{{ asset('images/logo.png') }}" 
+                    alt="ZipMoment Logo"
+                    class="h-10 object-contain rounded-xl shadow-lg">
             </div>
             
             <div class="hidden md:flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
@@ -117,19 +117,17 @@
             </div>
             
             <h1 class="cinematic-reveal text-6xl md:text-[120px] font-serif italic font-black leading-[0.9] mb-10 tracking-tighter" style="animation-delay: 0.2s">
-                Undangan Digital <br> 
-                <span class="lux-gradient">Yang Terasa Mahal.</span>
+                Platform Undangan Digital <br> <span class="lux-gradient">MODERN, ELEGANT, MINIMALIST</span>
             </h1>
             
             <p class="cinematic-reveal text-lg md:text-2xl text-white/40 font-outfit font-light max-w-3xl mx-auto mb-16 leading-relaxed italic" style="animation-delay: 0.4s">
-                Setiap detail diciptakan untuk mengesankan tamu Anda sejak detik pertama. <br>
-                Bukan sekadar template, tapi karya seni cinta yang eksklusif.
+                Undangan Digital dengan website modern, elegant dan minimalist. Mulai buat undanganmu bersama kami dengan berbagai tema yang tersedia.
             </p>
             
             <div class="cinematic-reveal flex flex-col md:flex-row items-center justify-center gap-8" style="animation-delay: 0.6s">
                 @php
                     $waNumber = "6287896443386";
-                    $heroMsg = rawurlencode("Halo ZipMoment, saya ingin membuat undangan yang membuat tamu saya berkata: 'ini mahal'.\n\nMohon info detail paket Luxury-nya.");
+                    $heroMsg = rawurlencode("Halo ZipMoment, saya tertarik membuat undangan digital yang modern, elegant dan minimalist.\n\nMohon info detailnya.");
                     $waUrl = "https://wa.me/{$waNumber}?text={$heroMsg}";
                 @endphp
                 <a href="{{ $waUrl }}" target="_blank" class="w-full md:w-auto px-12 py-6 bg-amber-500 text-black font-black uppercase tracking-[0.2em] text-xs rounded-full hover:scale-110 hover:shadow-[0_0_40px_rgba(245,158,11,0.3)] transition-all duration-500 flex items-center justify-center group">
