@@ -18,20 +18,21 @@
         
         .bg-cream { background-color: #fdfbf7; }
         
-        .timeline-item::after {
+        .timeline-line::after {
             content: '';
             position: absolute;
             left: 50%;
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #d4af37;
+            background: #e2e8f0;
             transform: translateX(-50%);
         }
 
         @media (max-width: 768px) {
-            .timeline-item::after {
+            .timeline-line::after {
                 left: 20px;
+                transform: none;
             }
         }
 
@@ -61,13 +62,13 @@
             </div>
         @endif
         
-        <div class="relative z-10 animate__animated animate__fadeInUp">
-            <h3 class="text-white text-lg md:text-xl uppercase tracking-[0.4em] mb-4">The Wedding Of</h3>
-<h1 class="text-white mb-8 text-[3.5rem]" style="font-family:'Allura', sans-serif;">
-    {{ $invitation->groom_name }} & {{ $invitation->bride_name }}
-</h1>
+        <div class="relative z-10 animate__animated animate__fadeInUp px-4">
+            <h3 class="text-white text-base md:text-xl uppercase tracking-[0.4em] mb-4">The Wedding Of</h3>
+            <h1 class="gold-text mb-8 text-4xl md:text-[3.5rem] break-words" style="font-family:'Great Vibes', cursive;">
+                {{ $invitation->groom_name }} & {{ $invitation->bride_name }}
+            </h1>
             <div class="max-w-md mx-auto h-[1px] bg-white/50 mb-8"></div>
-            <p class="text-white text-xl md:text-2xl font-light tracking-widest uppercase mb-12">
+            <p class="text-white text-lg md:text-2xl font-light tracking-widest uppercase mb-12">
                 {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
             </p>
             
@@ -93,15 +94,15 @@
             <div class="scroll-reveal flex flex-col items-center">
                 <div class="relative mb-6">
                     <div class="absolute inset-0 gold-bg rounded-full translate-x-3 translate-y-3 opacity-20"></div>
-                    <img src="{{ $invitation->groom_photo_url ?? 'https://via.placeholder.com/300' }}" class="relative w-64 h-64 object-cover rounded-full border-8 border-white shadow-2xl">
+                    <img src="{{ $invitation->groom_photo_url ?? 'https://via.placeholder.com/300' }}" class="relative w-56 h-56 md:w-64 md:h-64 object-cover rounded-full border-8 border-white shadow-2xl">
                     @if($invitation->groom_instagram)
                         <a href="https://instagram.com/{{ ltrim($invitation->groom_instagram, '@') }}" target="_blank" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg gold-text hover:gold-bg hover:text-white transition">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </a>
                     @endif
                 </div>
-                <h3 class="font-serif text-3xl gold-text mb-2">{{ $invitation->groom_name }}</h3>
-                <p class="text-xs uppercase tracking-widest text-gray-400 mb-4 whitespace-pre-line">{{ $invitation->groom_parent_text }}</p>
+                <h3 class="font-serif text-2xl md:text-3xl gold-text mb-2 break-words">{{ $invitation->groom_name }}</h3>
+                <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-400 mb-4 whitespace-pre-line break-words">{{ $invitation->groom_parent_text }}</p>
             </div>
 
             <!-- Bride -->
@@ -171,21 +172,23 @@
         <div class="relative">
             <!-- Timeline Line -->
             <div class="absolute left-1/2 -content-[''] translate-x-[-50%] h-full w-[2px] bg-stone-200 hidden md:block"></div>
+            <!-- Mobile Timeline Line -->
+            <div class="absolute left-6 top-0 bottom-0 w-[2px] bg-stone-100 md:hidden"></div>
             
-            <div class="space-y-16">
+            <div class="space-y-12 md:space-y-16">
                 @foreach($invitation->loveStories as $key => $story)
-                    <div class="scroll-reveal relative flex flex-col md:flex-row items-center {{ $key % 2 != 0 ? 'md:flex-row-reverse' : '' }}">
+                    <div class="scroll-reveal relative flex flex-col md:flex-row items-center {{ $key % 2 != 0 ? 'md:flex-row-reverse' : '' }} pl-12 md:pl-0">
                         <!-- Dot -->
-                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 gold-bg rounded-full hidden md:block z-10 shadow-lg"></div>
+                        <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-3 md:w-4 md:h-4 gold-bg rounded-full z-10 shadow-lg"></div>
                         
                         <!-- Content -->
                         <div class="w-full md:w-1/2 {{ $key % 2 == 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left' }}">
-                             <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-500">
+                             <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition duration-500 border border-stone-50">
                                 @if($story->photo_url)
-                                    <img src="{{ $story->photo_url }}" class="w-full h-48 object-cover rounded-xl mb-4 shadow">
+                                    <img src="{{ $story->photo_url }}" class="w-full h-40 md:h-48 object-cover rounded-xl mb-4 shadow">
                                 @endif
-                                <h4 class="font-serif text-xl gold-text mb-2">{{ $story->title }}</h4>
-                                <p class="text-xs text-gray-500 leading-relaxed">{{ $story->description }}</p>
+                                <h4 class="font-serif text-lg md:text-xl gold-text mb-2 break-words">{{ $story->title }}</h4>
+                                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed italic break-words">{{ $story->description }}</p>
                              </div>
                         </div>
                     </div>
@@ -256,7 +259,7 @@
 
     <!-- Footer -->
     <footer class="py-16 px-6 text-center bg-white border-t border-stone-100">
-        <h3 class="font-cursive text-4xl gold-text mb-8">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
+        <h3 class="text-4xl gold-text mb-8" style="font-family:'Pinyon Script', sans-serif;">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
         <p class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-12">Thank You for Being Part of Our Day</p>
         
         <div class="flex flex-col items-center space-y-4">

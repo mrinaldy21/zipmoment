@@ -51,19 +51,19 @@
             </div>
         @endif
         
-        <div class="relative z-10 animate__animated animate__fadeIn">
-            <h3 class="text-xs uppercase tracking-[0.5em] mb-8 text-gray-400">Union of Two Souls</h3>
-            <div class="space-y-4 mb-12">
-                <h1 class="font-header text-5xl md:text-8xl text-white tracking-widest uppercase">{{ $invitation->groom_name }}</h1>
-                <p class="text-2xl font-thin text-gray-500 italic">&</p>
-                <h1 class="font-header text-5xl md:text-8xl text-white tracking-widest uppercase">{{ $invitation->bride_name }}</h1>
+        <div class="relative z-10 animate__animated animate__fadeIn px-4">
+            <h3 class="text-[10px] uppercase tracking-[0.5em] mb-6 md:mb-8 text-gray-400">Union of Two Souls</h3>
+            <div class="space-y-4 mb-10 md:mb-12">
+                <h1 class="font-header text-4xl md:text-8xl text-white tracking-widest uppercase break-words">{{ $invitation->groom_name }}</h1>
+                <p class="text-xl md:text-2xl font-thin text-gray-500 italic">&</p>
+                <h1 class="font-header text-4xl md:text-8xl text-white tracking-widest uppercase break-words">{{ $invitation->bride_name }}</h1>
             </div>
             
-            <div class="flex justify-center mb-12">
+            <div class="flex justify-center mb-10 md:mb-12">
                 @include('themes.partials.countdown')
             </div>
 
-            <p class="text-sm tracking-[0.3em] font-light uppercase border-t border-b border-gray-800 py-4 inline-block">
+            <p class="text-[10px] md:text-sm tracking-[0.3em] font-light uppercase border-t border-b border-gray-800 py-4 inline-block">
                 {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
             </p>
         </div>
@@ -71,32 +71,32 @@
 
     <!-- Couple Section -->
     <section class="py-32 px-6 max-w-5xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
             <!-- Groom -->
-            <div class="scroll-reveal text-center md:text-right">
-                <div class="relative inline-block mb-10 overflow-hidden group">
-                    <img src="{{ $invitation->groom_photo_url ?? 'https://via.placeholder.com/400' }}" class="w-80 h-96 object-cover grayscale hover:grayscale-0 transition duration-1000 transform hover:scale-105">
+            <div class="scroll-reveal text-center md:text-right px-4">
+                <div class="relative inline-block mb-8 md:mb-10 overflow-hidden group">
+                    <img src="{{ $invitation->groom_photo_url ?? 'https://via.placeholder.com/400' }}" class="w-full max-w-[280px] md:w-80 h-auto aspect-[4/5] object-cover grayscale hover:grayscale-0 transition duration-1000 transform hover:scale-105 mx-auto">
                     <div class="absolute bottom-4 right-4 bg-black/50 backdrop-blur p-2 border border-white/20">
-                         <span class="text-[10px] uppercase tracking-widest text-white">The Groom</span>
+                         <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-white">The Groom</span>
                     </div>
                 </div>
-                <h3 class="font-header text-4xl text-white mb-4 tracking-tight">{{ $invitation->groom_name }}</h3>
-                <p class="text-[10px] uppercase text-gray-500 tracking-[0.2em] mb-4 whitespace-pre-line">{{ $invitation->groom_parent_text }}</p>
+                <h3 class="font-header text-3xl md:text-4xl text-white mb-4 tracking-tight break-words">{{ $invitation->groom_name }}</h3>
+                <p class="text-[10px] uppercase text-gray-500 tracking-[0.2em] mb-4 whitespace-pre-line break-words">{{ $invitation->groom_parent_text }}</p>
                 @if($invitation->groom_instagram)
                     <a href="#" class="text-[10px] uppercase tracking-[0.2em] border-b border-gray-700 hover:border-white transition pb-1">Instagram Account</a>
                 @endif
             </div>
 
             <!-- Bride -->
-            <div class="scroll-reveal text-center md:text-left">
-                <div class="relative inline-block mb-10 overflow-hidden group">
-                    <img src="{{ $invitation->bride_photo_url ?? 'https://via.placeholder.com/400' }}" class="w-80 h-96 object-cover grayscale hover:grayscale-0 transition duration-1000 transform hover:scale-105">
+            <div class="scroll-reveal text-center md:text-left px-4">
+                <div class="relative inline-block mb-8 md:mb-10 overflow-hidden group">
+                    <img src="{{ $invitation->bride_photo_url ?? 'https://via.placeholder.com/400' }}" class="w-full max-w-[280px] md:w-80 h-auto aspect-[4/5] object-cover grayscale hover:grayscale-0 transition duration-1000 transform hover:scale-105 mx-auto">
                     <div class="absolute bottom-4 left-4 bg-black/50 backdrop-blur p-2 border border-white/20">
-                         <span class="text-[10px] uppercase tracking-widest text-white">The Bride</span>
+                         <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-white">The Bride</span>
                     </div>
                 </div>
-                <h3 class="font-header text-4xl text-white mb-4 tracking-tight">{{ $invitation->bride_name }}</h3>
-                <p class="text-[10px] uppercase text-gray-500 tracking-[0.2em] mb-4 whitespace-pre-line">{{ $invitation->bride_parent_text }}</p>
+                <h3 class="font-header text-3xl md:text-4xl text-white mb-4 tracking-tight break-words">{{ $invitation->bride_name }}</h3>
+                <p class="text-[10px] uppercase text-gray-500 tracking-[0.2em] mb-4 whitespace-pre-line break-words">{{ $invitation->bride_parent_text }}</p>
                 @if($invitation->bride_instagram)
                     <a href="#" class="text-[10px] uppercase tracking-[0.2em] border-b border-gray-700 hover:border-white transition pb-1">Instagram Account</a>
                 @endif

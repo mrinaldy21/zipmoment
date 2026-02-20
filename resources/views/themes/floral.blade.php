@@ -52,13 +52,13 @@
              <div class="absolute inset-0 bg-white/60"></div>
         </div>
         
-        <div class="relative z-10 animate__animated animate__fadeIn">
-            <h3 class="text-pink-400 text-sm uppercase tracking-[0.4em] mb-4 font-bold">The Wedding Of</h3>
-            <h1 class="font-cursive text-6xl md:text-8xl text-pink-600 mb-8">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h1>
+        <div class="relative z-10 animate__animated animate__fadeIn px-4">
+            <h3 class="text-pink-400 text-xs md:text-sm uppercase tracking-[0.4em] mb-4 font-bold">The Wedding Of</h3>
+            <h1 class="font-cursive text-5xl md:text-8xl text-pink-600 mb-8 break-words">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h1>
             <div class="flex justify-center mb-8">
                 @include('themes.partials.countdown')
             </div>
-            <p class="text-pink-500 text-lg md:text-xl italic font-semibold tracking-widest uppercase">
+            <p class="text-pink-500 text-base md:text-xl italic font-semibold tracking-widest uppercase">
                 {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
             </p>
         </div>
@@ -73,26 +73,26 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Groom -->
-            <div class="scroll-reveal group">
+            <div class="scroll-reveal group px-4">
                 <div class="relative inline-block mb-6">
                     <div class="absolute inset-0 bg-pink-100 rounded-2xl transform rotate-3 group-hover:rotate-6 transition duration-500"></div>
-                    <img src="{{ $invitation->groom_photo_url ?? 'https://via.placeholder.com/300' }}" class="relative w-72 h-72 object-cover rounded-2xl border-4 border-white shadow-xl">
+                    <img src="{{ $invitation->groom_photo_url ?? 'https://via.placeholder.com/300' }}" class="relative w-64 h-64 md:w-72 md:h-72 object-cover rounded-2xl border-4 border-white shadow-xl">
                 </div>
-                <h3 class="font-cursive text-4xl text-pink-600 mb-1">{{ $invitation->groom_name }}</h3>
-                <p class="text-[10px] uppercase font-bold text-gray-400 tracking-tighter mb-4 whitespace-pre-line">{{ $invitation->groom_parent_text }}</p>
+                <h3 class="font-cursive text-3xl md:text-4xl text-pink-600 mb-1 break-words">{{ $invitation->groom_name }}</h3>
+                <p class="text-[9px] md:text-[10px] uppercase font-bold text-gray-400 tracking-tighter mb-4 whitespace-pre-line break-words">{{ $invitation->groom_parent_text }}</p>
                 @if($invitation->groom_instagram)
                     <a href="https://instagram.com/{{ ltrim($invitation->groom_instagram, '@') }}" class="text-pink-400 hover:text-pink-600 font-bold text-sm tracking-widest">@ {{ ltrim($invitation->groom_instagram, '@') }}</a>
                 @endif
             </div>
 
             <!-- Bride -->
-            <div class="scroll-reveal group">
+            <div class="scroll-reveal group px-4">
                 <div class="relative inline-block mb-6">
                     <div class="absolute inset-0 bg-pink-100 rounded-2xl transform -rotate-3 group-hover:-rotate-6 transition duration-500"></div>
-                    <img src="{{ $invitation->bride_photo_url ?? 'https://via.placeholder.com/300' }}" class="relative w-72 h-72 object-cover rounded-2xl border-4 border-white shadow-xl">
+                    <img src="{{ $invitation->bride_photo_url ?? 'https://via.placeholder.com/300' }}" class="relative w-64 h-64 md:w-72 md:h-72 object-cover rounded-2xl border-4 border-white shadow-xl">
                 </div>
-                <h3 class="font-cursive text-4xl text-pink-600 mb-1">{{ $invitation->bride_name }}</h3>
-                <p class="text-[10px] uppercase font-bold text-gray-400 tracking-tighter mb-4 whitespace-pre-line">{{ $invitation->bride_parent_text }}</p>
+                <h3 class="font-cursive text-3xl md:text-4xl text-pink-600 mb-1 break-words">{{ $invitation->bride_name }}</h3>
+                <p class="text-[9px] md:text-[10px] uppercase font-bold text-gray-400 tracking-tighter mb-4 whitespace-pre-line break-words">{{ $invitation->bride_parent_text }}</p>
                 @if($invitation->bride_instagram)
                     <a href="https://instagram.com/{{ ltrim($invitation->bride_instagram, '@') }}" class="text-pink-400 hover:text-pink-600 font-bold text-sm tracking-widest">@ {{ ltrim($invitation->bride_instagram, '@') }}</a>
                 @endif

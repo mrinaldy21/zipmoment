@@ -1,27 +1,27 @@
-<div id="countdown" class="flex justify-center space-x-4 md:space-x-8">
+<div id="countdown" class="flex justify-center space-x-2 md:space-x-8">
     <div class="text-center group">
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-3 md:p-4 border-b-4 border-[#d4af37] w-16 md:w-20 transform group-hover:-translate-y-1 transition">
-            <span id="days" class="text-2xl md:text-3xl font-bold text-[#d4af37]">00</span>
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-2 md:p-4 border-b-4 border-[#d4af37] w-14 md:w-20 transform group-hover:-translate-y-1 transition">
+            <span id="days" class="text-xl md:text-3xl font-bold text-[#d4af37]">00</span>
         </div>
-        <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Days</p>
+        <p class="text-[9px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Days</p>
     </div>
     <div class="text-center group">
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-3 md:p-4 border-b-4 border-[#d4af37] w-16 md:w-20 transform group-hover:-translate-y-1 transition">
-            <span id="hours" class="text-2xl md:text-3xl font-bold text-[#d4af37]">00</span>
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-2 md:p-4 border-b-4 border-[#d4af37] w-14 md:w-20 transform group-hover:-translate-y-1 transition">
+            <span id="hours" class="text-xl md:text-3xl font-bold text-[#d4af37]">00</span>
         </div>
-        <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Hours</p>
+        <p class="text-[9px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Hours</p>
     </div>
     <div class="text-center group">
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-3 md:p-4 border-b-4 border-[#d4af37] w-16 md:w-20 transform group-hover:-translate-y-1 transition">
-            <span id="minutes" class="text-2xl md:text-3xl font-bold text-[#d4af37]">00</span>
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-2 md:p-4 border-b-4 border-[#d4af37] w-14 md:w-20 transform group-hover:-translate-y-1 transition">
+            <span id="minutes" class="text-xl md:text-3xl font-bold text-[#d4af37]">00</span>
         </div>
-        <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Mins</p>
+        <p class="text-[9px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Mins</p>
     </div>
     <div class="text-center group">
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-3 md:p-4 border-b-4 border-[#d4af37] w-16 md:w-20 transform group-hover:-translate-y-1 transition">
-            <span id="seconds" class="text-2xl md:text-3xl font-bold text-[#d4af37]">00</span>
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-2 md:p-4 border-b-4 border-[#d4af37] w-14 md:w-20 transform group-hover:-translate-y-1 transition">
+            <span id="seconds" class="text-xl md:text-3xl font-bold text-[#d4af37]">00</span>
         </div>
-        <p class="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Secs</p>
+        <p class="text-[9px] md:text-xs uppercase tracking-widest text-gray-500 mt-2">Secs</p>
     </div>
 </div>
 
