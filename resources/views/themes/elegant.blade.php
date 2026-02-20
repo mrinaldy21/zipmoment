@@ -63,7 +63,9 @@
         
         <div class="relative z-10 animate__animated animate__fadeInUp">
             <h3 class="text-white text-lg md:text-xl uppercase tracking-[0.4em] mb-4">The Wedding Of</h3>
-            <h1 class="font-cursive text-7xl md:text-9xl text-white mb-8">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h1>
+<h1 class="text-white mb-8 text-[3.5rem]" style="font-family:'Allura', sans-serif;">
+    {{ $invitation->groom_name }} & {{ $invitation->bride_name }}
+</h1>
             <div class="max-w-md mx-auto h-[1px] bg-white/50 mb-8"></div>
             <p class="text-white text-xl md:text-2xl font-light tracking-widest uppercase mb-12">
                 {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
