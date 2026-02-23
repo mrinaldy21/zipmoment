@@ -44,6 +44,15 @@ class Invitation extends Model
         'resepsi_end',
         'resepsi_location',
         'resepsi_maps',
+
+        // LOVE STORY FEATURES
+        'story_intro',
+        'story_engagement',
+        'story_marriage',
+        'story_photo_intro',
+        'story_photo_engagement',
+        'story_photo_marriage',
+
         'gift_bank_pria',
         'gift_bank_pria_name',
         'gift_bank_wanita',

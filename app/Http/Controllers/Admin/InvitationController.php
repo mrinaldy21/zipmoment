@@ -9,11 +9,14 @@ use App\Models\Gallery;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Services\CloudinaryService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 class InvitationController extends Controller
 {
     protected $cloudinary;
+    protected $allowedTemplates = ['elegant', 'floral', 'modern', 'minimalist', 'romantic', 'cinematic'];
 
     public function __construct(CloudinaryService $cloudinary)
     {
@@ -51,7 +54,7 @@ class InvitationController extends Controller
             'event_location' => 'nullable|string',
             'map_link' => 'nullable|url',
             'cover_photo' => 'nullable|image|max:2048',
-            'template' => 'required|in:elegant,floral,modern',
+            'template' => 'required|in:' . implode(',', $this->allowedTemplates),
             'gallery.*' => 'image|max:2048',
             'user_id' => 'required|exists:users,id',
             'package_type' => 'nullable|in:basic,premium,exclusive',
@@ -85,33 +88,54 @@ class InvitationController extends Controller
             'footer_website' => 'nullable|string|max:255',
         ]);
 
+        DB::beginTransaction();
         try {
             $data = $request->except(['cover_photo', 'gallery', 'groom_photo', 'bride_photo', 'music_path']);
-            $data['slug'] = Str::slug($request->title) . '-' . Str::random(5);
+            
+            // BULLETPROOF SLUG GENERATION
+            $slug = Str::slug($request->title);
+            $originalSlug = $slug;
+            $count = 1;
+            while (Invitation::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . Str::random(4) . '-' . $count++;
+            }
+            $data['slug'] = $slug;
 
-            // Cloudinary Uploads
+            // Cloudinary Uploads with Success Logging
             if ($request->hasFile('cover_photo')) {
-                $data['cover_photo'] = $this->cloudinary->upload($request->file('cover_photo'), 'zipmoment/covers');
+                $url = $this->cloudinary->upload($request->file('cover_photo'), 'zipmoment/covers');
+                if (!$url) throw new \Exception('Gagal mengunggah foto sampul.');
+                $data['cover_photo'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'cover', 'slug' => $slug, 'admin_id' => auth()->id()]);
             }
             if ($request->hasFile('groom_photo')) {
-                $data['groom_photo'] = $this->cloudinary->upload($request->file('groom_photo'), 'zipmoment/couples');
+                $url = $this->cloudinary->upload($request->file('groom_photo'), 'zipmoment/couples');
+                if (!$url) throw new \Exception('Gagal mengunggah foto pengantin pria.');
+                $data['groom_photo'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'groom', 'slug' => $slug, 'admin_id' => auth()->id()]);
             }
             if ($request->hasFile('bride_photo')) {
-                $data['bride_photo'] = $this->cloudinary->upload($request->file('bride_photo'), 'zipmoment/couples');
+                $url = $this->cloudinary->upload($request->file('bride_photo'), 'zipmoment/couples');
+                if (!$url) throw new \Exception('Gagal mengunggah foto pengantin wanita.');
+                $data['bride_photo'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'bride', 'slug' => $slug, 'admin_id' => auth()->id()]);
             }
             if ($request->hasFile('music_path')) {
-                $data['music_path'] = $this->cloudinary->upload($request->file('music_path'), 'zipmoment/music');
+                $url = $this->cloudinary->upload($request->file('music_path'), 'zipmoment/music');
+                if (!$url) throw new \Exception('Gagal mengunggah file musik.');
+                $data['music_path'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'music', 'slug' => $slug, 'admin_id' => auth()->id()]);
             }
 
             $invitation = Invitation::create($data);
 
             if ($request->hasFile('gallery')) {
-                // Gallery Limit Enforcement
                 $allowed = ($request->package_type === 'basic') ? ($request->gallery_limit ?? 5) : 999;
                 $uploadCount = count($request->file('gallery'));
                 
                 if ($uploadCount > $allowed) {
-                    return back()->withInput()->with('error', "Your package limit is $allowed photos. Please select Premium for more.");
+                    DB::rollBack();
+                    return back()->withInput()->with('error', "Batas paket Anda adalah $allowed foto. Silakan pilih paket Premium untuk lebih banyak foto.");
                 }
 
                 foreach ($request->file('gallery') as $photo) {
@@ -120,11 +144,21 @@ class InvitationController extends Controller
                         $invitation->galleries()->create(['photo_path' => $url]);
                     }
                 }
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'gallery', 'count' => $uploadCount, 'slug' => $slug, 'admin_id' => auth()->id()]);
             }
 
-            return redirect()->route('admin.invitations.index')->with('success', 'Invitation created successfully.');
-        } catch (\Exception $e) {
-            return back()->withInput()->with('error', 'Upload failed: ' . $e->getMessage());
+            DB::commit();
+            Log::info('[INVITATION_CREATE_SUCCESS]', ['id' => $invitation->id, 'slug' => $slug, 'admin_id' => auth()->id()]);
+            return redirect()->route('admin.invitations.index')->with('success', 'Undangan berhasil dibuat.');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::error('[INVITATION_CREATE_FAILED]', [
+                'message' => $e->getMessage(),
+                'admin_id' => auth()->id(),
+                'request' => $request->except(['cover_photo', 'gallery', 'groom_photo', 'bride_photo', 'music_path']),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat menyimpan undangan: ' . $e->getMessage()]);
         }
     }
 
@@ -154,7 +188,7 @@ class InvitationController extends Controller
             'event_location' => 'nullable|string',
             'map_link' => 'nullable|url',
             'cover_photo' => 'nullable|image|max:2048',
-            'template' => 'required|in:elegant,floral,modern',
+            'template' => 'required|in:' . implode(',', $this->allowedTemplates),
             'gallery.*' => 'image|max:2048',
             'user_id' => 'required|exists:users,id',
             'package_type' => 'nullable|in:basic,premium,exclusive',
@@ -188,52 +222,64 @@ class InvitationController extends Controller
             'footer_website' => 'nullable|string|max:255',
         ]);
 
+        DB::beginTransaction();
         try {
             $data = $request->except(['cover_photo', 'gallery', 'groom_photo', 'bride_photo', 'music_path']);
 
-            // Cloudinary Uploads
+            // Cloudinary Uploads with Success Logging
             if ($request->hasFile('cover_photo')) {
-                $data['cover_photo'] = $this->cloudinary->upload($request->file('cover_photo'), 'zipmoment/covers');
+                $url = $this->cloudinary->upload($request->file('cover_photo'), 'zipmoment/covers');
+                if (!$url) throw new \Exception('Gagal mengunggah foto sampul.');
+                $data['cover_photo'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'cover', 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
             }
             if ($request->hasFile('groom_photo')) {
-                $data['groom_photo'] = $this->cloudinary->upload($request->file('groom_photo'), 'zipmoment/couples');
+                $url = $this->cloudinary->upload($request->file('groom_photo'), 'zipmoment/couples');
+                if (!$url) throw new \Exception('Gagal mengunggah foto pengantin pria.');
+                $data['groom_photo'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'groom', 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
             }
             if ($request->hasFile('bride_photo')) {
-                $data['bride_photo'] = $this->cloudinary->upload($request->file('bride_photo'), 'zipmoment/couples');
+                $url = $this->cloudinary->upload($request->file('bride_photo'), 'zipmoment/couples');
+                if (!$url) throw new \Exception('Gagal mengunggah foto pengantin wanita.');
+                $data['bride_photo'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'bride', 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
             }
             if ($request->hasFile('music_path')) {
-                $data['music_path'] = $this->cloudinary->upload($request->file('music_path'), 'zipmoment/music');
+                $url = $this->cloudinary->upload($request->file('music_path'), 'zipmoment/music');
+                if (!$url) throw new \Exception('Gagal mengunggah file musik.');
+                $data['music_path'] = $url;
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'music', 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
             }
 
             $invitation->update($data);
 
-        // Handle Existing Events Update
-        if ($request->has('existing_events')) {
-            foreach ($request->existing_events as $id => $eventData) {
-                $event = $invitation->events()->find($id);
-                if ($event) {
-                    $event->update($eventData);
+            // Handle Existing Events Update
+            if ($request->has('existing_events')) {
+                foreach ($request->existing_events as $id => $eventData) {
+                    $event = $invitation->events()->find($id);
+                    if ($event) {
+                        $event->update($eventData);
+                    }
                 }
             }
-        }
 
-        // Handle New Events
-        if ($request->has('new_events')) {
-            foreach ($request->new_events as $eventData) {
-                $invitation->events()->create($eventData);
+            // Handle New Events
+            if ($request->has('new_events')) {
+                foreach ($request->new_events as $eventData) {
+                    $invitation->events()->create($eventData);
+                }
             }
-        }
 
-        // Reset gallery logic if needed or handled separately
-        if ($request->hasFile('gallery')) {
-            // Gallery Limit Enforcement
-            $currentCount = $invitation->galleries()->count();
-            $allowed = ($request->package_type === 'basic') ? ($request->gallery_limit ?? 5) : 999;
-            $newUploads = count($request->file('gallery'));
+            if ($request->hasFile('gallery')) {
+                $currentCount = $invitation->galleries()->count();
+                $allowed = ($request->package_type === 'basic') ? ($request->gallery_limit ?? 5) : 999;
+                $newUploads = count($request->file('gallery'));
 
-            if ($currentCount + $newUploads > $allowed) {
-                return back()->withInput()->with('error', "Your package limit is $allowed photos. Currently you have $currentCount. Please upgrade to Premium for unlimited gallery.");
-            }
+                if ($currentCount + $newUploads > $allowed) {
+                    DB::rollBack();
+                    return back()->withInput()->with('error', "Batas paket Anda adalah $allowed foto. Saat ini Anda memiliki $currentCount. Silakan tingkatkan ke Premium untuk galeri tak terbatas.");
+                }
 
                 foreach ($request->file('gallery') as $photo) {
                     $url = $this->cloudinary->upload($photo, 'zipmoment/galleries');
@@ -241,33 +287,57 @@ class InvitationController extends Controller
                         $invitation->galleries()->create(['photo_path' => $url]);
                     }
                 }
+                Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'gallery', 'count' => $newUploads, 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
             }
 
-            return redirect()->route('admin.invitations.index')->with('success', 'Invitation updated successfully.');
-        } catch (\Exception $e) {
-            return back()->withInput()->with('error', 'Update failed: ' . $e->getMessage());
+            DB::commit();
+            Log::info('[INVITATION_UPDATE_SUCCESS]', ['id' => $invitation->id, 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
+            return redirect()->route('admin.invitations.index')->with('success', 'Undangan berhasil diperbarui.');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::error('[INVITATION_UPDATE_FAILED]', [
+                'id' => $invitation->id,
+                'message' => $e->getMessage(),
+                'admin_id' => auth()->id(),
+                'request' => $request->except(['cover_photo', 'gallery', 'groom_photo', 'bride_photo', 'music_path']),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return back()->withInput()->withErrors(['error' => 'Terjadi kesalahan saat memperbarui undangan: ' . $e->getMessage()]);
         }
     }
 
     public function destroy(Invitation $invitation)
     {
-        // Safe delete: only delete database records for now
-        // Deleting from Cloudinary requires more complex logic to get public_id
-        foreach ($invitation->galleries as $gallery) {
-            $gallery->delete();
+        $id = $invitation->id;
+        $slug = $invitation->slug;
+        
+        try {
+            foreach ($invitation->galleries as $gallery) {
+                $gallery->delete();
+            }
+
+            $invitation->delete();
+            
+            Log::info('[INVITATION_DELETE_SUCCESS]', ['id' => $id, 'slug' => $slug, 'admin_id' => auth()->id()]);
+            return redirect()->route('admin.invitations.index')->with('success', 'Undangan berhasil dihapus.');
+        } catch (\Throwable $e) {
+            Log::error('[INVITATION_DELETE_FAILED]', ['id' => $id, 'slug' => $slug, 'message' => $e->getMessage()]);
+            return back()->with('error', 'Gagal menghapus undangan.');
         }
-
-        $invitation->delete();
-
-        return redirect()->route('admin.invitations.index')->with('success', 'Invitation deleted successfully.');
     }
 
     public function destroyGallery(Gallery $gallery)
     {
-        // Delete record from database
-        $gallery->delete();
+        try {
+            $invitationId = $gallery->invitation_id;
+            $gallery->delete();
 
-        return response()->json(['success' => true, 'message' => 'Photo removed from record successfully.']);
+            Log::info('[INVITATION_GALLERY_DELETE_SUCCESS]', ['invitation_id' => $invitationId, 'gallery_id' => $gallery->id, 'admin_id' => auth()->id()]);
+            return response()->json(['success' => true, 'message' => 'Foto berhasil dihapus.']);
+        } catch (\Throwable $e) {
+            Log::error('[INVITATION_GALLERY_DELETE_FAILED]', ['gallery_id' => $gallery->id, 'message' => $e->getMessage()]);
+            return response()->json(['success' => false, 'message' => 'Gagal menghapus foto.'], 500);
+        }
     }
 
     public function showPublic(Invitation $invitation)
