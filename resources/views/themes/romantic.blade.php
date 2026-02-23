@@ -70,6 +70,10 @@
             <p class="text-lg md:text-2xl font-light tracking-widest uppercase mb-12 border-y border-rose-100 dark:border-rose-900 py-4 px-8 inline-block">
                 {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
             </p>
+
+            <div class="mt-8">
+                @include('themes.partials.countdown')
+            </div>
         </div>
     </section>
 
@@ -94,8 +98,8 @@
             <div class="scroll-reveal order-1 lg:order-2 text-center lg:text-left">
                 <span class="lux-gradient font-serif text-4xl mb-4 block italic">The Groom</span>
                 <h2 class="font-serif text-5xl md:text-7xl mb-8 tracking-tighter">{{ $invitation->groom_name }}</h2>
-                <p class="text-sm md:text-lg opacity-60 leading-relaxed mb-10 italic">
-                    {{ $invitation->groom_description }}
+                <p class="text-sm md:text-lg opacity-60 leading-relaxed mb-10 italic whitespace-pre-line">
+                    {{ $invitation->groom_parent_text }}
                 </p>
                 @if($invitation->groom_instagram)
                 <a href="https://instagram.com/{{ ltrim($invitation->groom_instagram, '@') }}" class="inline-flex items-center space-x-2 text-rose-500 font-bold tracking-widest uppercase text-xs">
@@ -110,8 +114,8 @@
             <div class="scroll-reveal text-center lg:text-right">
                 <span class="lux-gradient font-serif text-4xl mb-4 block italic">The Bride</span>
                 <h2 class="font-serif text-5xl md:text-7xl mb-8 tracking-tighter">{{ $invitation->bride_name }}</h2>
-                <p class="text-sm md:text-lg opacity-60 leading-relaxed mb-10 italic">
-                    {{ $invitation->bride_description }}
+                <p class="text-sm md:text-lg opacity-60 leading-relaxed mb-10 italic whitespace-pre-line">
+                    {{ $invitation->bride_parent_text }}
                 </p>
                 @if($invitation->bride_instagram)
                 <a href="https://instagram.com/{{ ltrim($invitation->bride_instagram, '@') }}" class="inline-flex items-center space-x-2 text-rose-500 font-bold tracking-widest uppercase text-xs">
@@ -127,6 +131,36 @@
                 </div>
             </div>
         </div>
+
+        <!-- Love Story Section -->
+        @if($invitation->loveStories->count() > 0)
+        <div class="max-w-4xl mx-auto mt-40">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="lux-gradient font-serif text-3xl italic block mb-2">Our Story</span>
+                <h2 class="font-serif text-5xl tracking-tighter">The Journey of Us</h2>
+            </div>
+
+            <div class="relative px-6">
+                <div class="absolute left-1/2 -content-[''] translate-x-[-50%] h-full w-[1px] bg-rose-200 hidden md:block"></div>
+                <div class="space-y-24">
+                    @foreach($invitation->loveStories as $key => $story)
+                        <div class="scroll-reveal relative flex flex-col md:flex-row items-center {{ $key % 2 != 0 ? 'md:flex-row-reverse' : '' }}">
+                            <div class="w-full md:w-1/2 {{ $key % 2 == 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left' }}">
+                                <div class="bg-white/50 dark:bg-rose-950/10 p-8 rounded-[40px] border border-rose-100 dark:border-rose-900 backdrop-blur-sm">
+                                    @if($story->photo_url)
+                                        <img src="{{ $story->photo_url }}" class="w-full h-48 object-cover rounded-[30px] mb-6 shadow-lg">
+                                    @endif
+                                    <h4 class="font-serif text-2xl italic mb-4 rose-500">{{ $story->title }}</h4>
+                                    <p class="text-sm opacity-60 leading-relaxed italic">{{ $story->description }}</p>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-rose-400 rounded-full border-4 border-white dark:border-rose-950 hidden md:block"></div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
     </section>
 
     <!-- Event & Logistics -->
@@ -151,6 +185,32 @@
         </div>
     </section>
 
+        <!-- Wedding Gift Section -->
+        @if($invitation->gift_bank_pria || $invitation->gift_bank_wanita)
+        <div class="max-w-4xl mx-auto mt-40 text-center scroll-reveal">
+            <span class="lux-gradient font-serif text-3xl italic block mb-2">Wedding Gift</span>
+            <h2 class="font-serif text-5xl tracking-tighter mb-12">Tanda Kasih</h2>
+            <p class="text-sm opacity-60 italic mb-12 max-w-lg mx-auto">Kehadiran Anda adalah hadiah terindah. Namun jika Anda bermaksud memberikan tanda kasih, dapat melalui:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                @if($invitation->gift_bank_pria)
+                <div class="p-10 rounded-[40px] border border-rose-100 dark:border-rose-900 bg-white/30 dark:bg-rose-950/5">
+                    <p class="text-[10px] uppercase tracking-widest text-rose-500 font-bold mb-4">Bank Transfer (Pria)</p>
+                    <h4 class="font-serif text-2xl italic mb-2">{{ $invitation->gift_bank_pria }}</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest opacity-40">{{ $invitation->gift_bank_pria_name }}</p>
+                </div>
+                @endif
+                @if($invitation->gift_bank_wanita)
+                <div class="p-10 rounded-[40px] border border-rose-100 dark:border-rose-900 bg-white/30 dark:bg-rose-950/5">
+                    <p class="text-[10px] uppercase tracking-widest text-rose-500 font-bold mb-4">Bank Transfer (Wanita)</p>
+                    <h4 class="font-serif text-2xl italic mb-2">{{ $invitation->gift_bank_wanita }}</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest opacity-40">{{ $invitation->gift_bank_wanita_name }}</p>
+                </div>
+                @endif
+            </div>
+        </div>
+        @endif
+
     <!-- Gallery Presentation -->
     <section class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
@@ -169,6 +229,15 @@
             </div>
         </div>
     </section>
+
+        <!-- Guestbook Section -->
+        <div class="max-w-3xl mx-auto mt-40 px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="lux-gradient font-serif text-3xl italic block mb-2">Wishes</span>
+                <h2 class="font-serif text-5xl tracking-tighter">Guestbook</h2>
+            </div>
+            @include('themes.partials.guestbook', ['theme' => 'romantic'])
+        </div>
 
     <!-- Footer -->
     <footer class="py-32 text-center">

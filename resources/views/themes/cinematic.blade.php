@@ -102,9 +102,12 @@
             </div>
 
             <div class="mt-16 scroll-reveal" style="transition-delay: 800ms;">
-                <p class="text-xl md:text-2xl font-header tracking-[0.5em] text-white/80 uppercase">
+                <p class="text-xl md:text-2xl font-header tracking-[0.5em] text-white/80 uppercase mb-12">
                     {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
                 </p>
+                <div class="mb-12">
+                    @include('themes.partials.countdown')
+                </div>
             </div>
         </div>
 
@@ -134,7 +137,7 @@
                     <div class="cinematic-reveal">
                         <span class="text-amber-500 font-black text-xs uppercase tracking-[0.4em] mb-4 block">The Gentleman</span>
                         <h3 class="font-header text-4xl md:text-7xl font-black uppercase mb-6">{{ $invitation->groom_name }}</h3>
-                        <p class="text-[10px] md:text-xs text-white/50 leading-loose max-w-sm uppercase tracking-widest">{{ $invitation->groom_description }}</p>
+                        <p class="text-[10px] md:text-xs text-white/50 leading-loose max-w-sm uppercase tracking-widest whitespace-pre-line">{{ $invitation->groom_parent_text }}</p>
                     </div>
                 </div>
             </div>
@@ -145,12 +148,39 @@
                     <div class="cinematic-reveal text-right">
                         <span class="text-amber-500 font-black text-xs uppercase tracking-[0.4em] mb-4 block">The Lady</span>
                         <h3 class="font-header text-4xl md:text-7xl font-black uppercase mb-6">{{ $invitation->bride_name }}</h3>
-                        <p class="text-[10px] md:text-xs text-white/50 leading-loose max-w-sm uppercase tracking-widest ml-auto">{{ $invitation->bride_description }}</p>
+                        <p class="text-[10px] md:text-xs text-white/50 leading-loose max-w-sm uppercase tracking-widest ml-auto whitespace-pre-line">{{ $invitation->bride_parent_text }}</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Love Story Section -->
+        @if($invitation->loveStories->count() > 0)
+        <div class="py-40 bg-black">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-32 scroll-reveal text-amber-500 font-header">
+                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-widest italic">Our Narrative</h2>
+                    <div class="h-px w-40 bg-current mx-auto mt-8 opacity-20"></div>
+                </div>
+
+                <div class="space-y-1">
+                    @foreach($invitation->loveStories as $story)
+                        <div class="scroll-reveal group relative h-[50vh] md:h-[70vh] overflow-hidden">
+                            @if($story->photo_url)
+                                <img src="{{ $story->photo_url }}" class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition duration-[3s]">
+                            @endif
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex items-end p-12 md:p-24">
+                                <div class="max-w-2xl">
+                                    <h4 class="font-header text-3xl md:text-5xl font-black uppercase mb-6 text-amber-500 italic">{{ $story->title }}</h4>
+                                    <p class="text-xs md:text-sm text-white/70 leading-loose uppercase tracking-[0.2em]">{{ $story->description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
 
     <!-- Events with Luxurious Reveal -->
     <section class="py-40 bg-[var(--bg-cinematic)]">
@@ -184,6 +214,35 @@
         </div>
     </section>
 
+        <!-- Wedding Gift Section -->
+        @if($invitation->gift_bank_pria || $invitation->gift_bank_wanita)
+        <div class="py-40 bg-black/80">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <div class="scroll-reveal mb-24">
+                    <h2 class="font-header text-4xl md:text-6xl font-black uppercase tracking-widest text-amber-500 italic">Curated Gifts</h2>
+                    <p class="text-[10px] md:text-xs text-white/30 uppercase tracking-[0.5em] mt-8">Your presence is our primary gift. Should you wish to express more:</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-1 max-w-4xl mx-auto bg-amber-500/10">
+                    @if($invitation->gift_bank_pria)
+                    <div class="p-16 bg-black flex flex-col items-center justify-center">
+                        <span class="text-amber-500/40 font-black text-[10px] uppercase tracking-[0.4em] mb-8">Paternal Transfer</span>
+                        <h4 class="font-header text-2xl md:text-3xl font-black text-white mb-2 italic tracking-widest">{{ $invitation->gift_bank_pria }}</h4>
+                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">{{ $invitation->gift_bank_pria_name }}</p>
+                    </div>
+                    @endif
+                    @if($invitation->gift_bank_wanita)
+                    <div class="p-16 bg-black flex flex-col items-center justify-center">
+                        <span class="text-amber-500/40 font-black text-[10px] uppercase tracking-[0.4em] mb-8">Maternal Transfer</span>
+                        <h4 class="font-header text-2xl md:text-3xl font-black text-white mb-2 italic tracking-widest">{{ $invitation->gift_bank_wanita }}</h4>
+                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">{{ $invitation->gift_bank_wanita_name }}</p>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        @endif
+
     <!-- Immersive Gallery -->
     <section class="py-40 bg-black">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
@@ -192,6 +251,17 @@
                 <img src="{{ $photo->photo_url }}" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-110 transition duration-[3s]">
             </div>
             @endforeach
+        </div>
+    </section>
+
+    <!-- Guestbook Section -->
+    <section class="py-40 bg-black border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-24 scroll-reveal">
+                <h2 class="font-header text-4xl md:text-6xl font-black uppercase tracking-widest text-amber-500 italic">Guestbook</h2>
+                <div class="h-px w-40 bg-amber-500/20 mx-auto mt-8"></div>
+            </div>
+            @include('themes.partials.guestbook', ['theme' => 'cinematic'])
         </div>
     </section>
 

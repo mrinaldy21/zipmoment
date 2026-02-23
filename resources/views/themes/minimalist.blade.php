@@ -67,6 +67,10 @@
             <p class="text-sm md:text-lg tracking-[0.4em] uppercase font-light">
                 {{ \Carbon\Carbon::parse($invitation->event_date)->translatedFormat('d F Y') }}
             </p>
+
+            <div class="mt-12">
+                @include('themes.partials.countdown')
+            </div>
         </div>
 
         <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
@@ -86,17 +90,43 @@
             <div class="scroll-reveal">
                 <img src="{{ $invitation->groom_photo_url ?? 'https://via.placeholder.com/400x500' }}" class="w-full aspect-[4/5] object-cover rounded-sm mb-8 filter grayscale hover:grayscale-0 transition duration-1000 shadow-sm">
                 <h3 class="font-serif text-3xl italic mb-2">{{ $invitation->groom_name }}</h3>
-                <p class="text-[10px] uppercase tracking-widest opacity-40 leading-relaxed">{{ $invitation->groom_description }}</p>
+                <p class="text-[10px] uppercase tracking-widest opacity-40 leading-relaxed whitespace-pre-line">{{ $invitation->groom_parent_text }}</p>
             </div>
 
             <!-- Bride -->
             <div class="scroll-reveal" style="transition-delay: 200ms;">
                 <img src="{{ $invitation->bride_photo_url ?? 'https://via.placeholder.com/400x500' }}" class="w-full aspect-[4/5] object-cover rounded-sm mb-8 filter grayscale hover:grayscale-0 transition duration-1000 shadow-sm">
                 <h3 class="font-serif text-3xl italic mb-2">{{ $invitation->bride_name }}</h3>
-                <p class="text-[10px] uppercase tracking-widest opacity-40 leading-relaxed">{{ $invitation->bride_description }}</p>
+                <p class="text-[10px] uppercase tracking-widest opacity-40 leading-relaxed whitespace-pre-line">{{ $invitation->bride_parent_text }}</p>
             </div>
         </div>
     </section>
+
+    <!-- Love Story Section -->
+    @if($invitation->loveStories->count() > 0)
+    <section class="py-32 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16 scroll-reveal">
+            <h2 class="font-serif text-3xl italic">Our Story</h2>
+            <div class="minimal-line w-20"></div>
+        </div>
+
+        <div class="space-y-24">
+            @foreach($invitation->loveStories as $story)
+            <div class="scroll-reveal grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="{{ $loop->iteration % 2 == 0 ? 'md:order-2' : '' }}">
+                    @if($story->photo_url)
+                        <img src="{{ $story->photo_url }}" class="w-full aspect-video object-cover rounded shadow-sm grayscale hover:grayscale-0 transition duration-1000">
+                    @endif
+                </div>
+                <div class="text-center md:text-left {{ $loop->iteration % 2 == 0 ? 'md:text-right' : '' }}">
+                    <h4 class="font-serif text-2xl italic mb-4">{{ $story->title }}</h4>
+                    <p class="text-xs leading-relaxed opacity-60 italic">{{ $story->description }}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
+    @endif
 
     <!-- Event Section -->
     <section class="py-32 bg-white dark:bg-black/50 border-y border-[var(--border-minimalist)]">
@@ -120,6 +150,34 @@
         </div>
     </section>
 
+    <!-- Wedding Gift Section -->
+    @if($invitation->gift_bank_pria || $invitation->gift_bank_wanita)
+    <section class="py-32 px-6 max-w-4xl mx-auto text-center">
+        <div class="scroll-reveal mb-16">
+            <h2 class="font-serif text-3xl italic">Wedding Gift</h2>
+            <div class="minimal-line w-20"></div>
+            <p class="text-xs opacity-40 italic max-w-md mx-auto">Doa restu Anda adalah karunia terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, Anda dapat mengirimkannya melalui:</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            @if($invitation->gift_bank_pria)
+            <div class="scroll-reveal p-10 border border-[var(--border-minimalist)] rounded-sm">
+                <p class="text-[10px] uppercase tracking-widest opacity-30 mb-4">Transfer Pria</p>
+                <h4 class="font-serif text-xl mb-1 italic">{{ $invitation->gift_bank_pria }}</h4>
+                <p class="text-[10px] font-bold uppercase tracking-widest opacity-60">{{ $invitation->gift_bank_pria_name }}</p>
+            </div>
+            @endif
+            @if($invitation->gift_bank_wanita)
+            <div class="scroll-reveal p-10 border border-[var(--border-minimalist)] rounded-sm">
+                <p class="text-[10px] uppercase tracking-widest opacity-30 mb-4">Transfer Wanita</p>
+                <h4 class="font-serif text-xl mb-1 italic">{{ $invitation->gift_bank_wanita }}</h4>
+                <p class="text-[10px] font-bold uppercase tracking-widest opacity-60">{{ $invitation->gift_bank_wanita_name }}</p>
+            </div>
+            @endif
+        </div>
+    </section>
+    @endif
+
     <!-- Gallery Section -->
     <section class="py-32 px-4 max-w-6xl mx-auto">
         <div class="text-center mb-16 scroll-reveal">
@@ -134,12 +192,23 @@
         </div>
     </section>
 
+    <!-- Guestbook Section -->
+    <section class="py-32 bg-white dark:bg-black/20">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-3xl italic">Wishes</h2>
+                <div class="minimal-line w-20"></div>
+            </div>
+            @include('themes.partials.guestbook', ['theme' => 'minimalist'])
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="py-20 border-t border-[var(--border-minimalist)] text-center">
         <div class="mb-8">
-            <img src="{{ asset('images/logo.png') }}" alt="ZipMoment" class="h-8 mx-auto opacity-30 grayscale rounded-lg">
+            <img src="{{ asset('images/logo.png') }}" alt="ZipMoment" class="h-8 mx-auto opacity-10 grayscale rounded-lg">
         </div>
-        <p class="text-[9px] uppercase tracking-[0.4em] opacity-30">&copy; 2026 Crafted by ZipMoment</p>
+        <p class="text-[9px] uppercase tracking-[0.4em] opacity-30">&copy; {{ date('Y') }} Crafted by ZipMoment</p>
     </footer>
 
     @include('themes.partials.template_cta')
