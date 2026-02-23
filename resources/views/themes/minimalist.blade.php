@@ -57,7 +57,7 @@
     <!-- Hero Section -->
     <section class="relative min-h-screen flex flex-col justify-center items-center text-center p-8 bg-white dark:bg-black">
         <div class="animate__animated animate__fadeIn">
-            <span class="text-[10px] uppercase tracking-[0.6em] font-semibold opacity-40 mb-8 block">The Union of Souls</span>
+            <span class="md:text-xl uppercase tracking-[0.6em] font-semibold opacity-40 mb-8 block">The Wedding Of</span>
             <h1 class="font-serif text-5xl md:text-8xl mb-4 italic tracking-tighter">{{ $invitation->groom_name }}</h1>
             <p class="font-serif text-2xl md:text-4xl opacity-20 my-4">&</p>
             <h1 class="font-serif text-5xl md:text-8xl mb-12 italic tracking-tighter">{{ $invitation->bride_name }}</h1>

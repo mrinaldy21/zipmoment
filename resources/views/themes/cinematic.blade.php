@@ -83,10 +83,8 @@
         </div>
 
         <div class="relative z-10 w-full max-w-5xl mx-auto opening-reveal">
-            <div class="cinematic-reveal inline-block mb-12">
-                <span class="inline-block px-4 py-1 border border-white/20 rounded-full text-[10px] uppercase tracking-[0.5em] backdrop-blur-md">The Wedding Celebration</span>
-            </div>
             
+            <h3 class="md:text-xl uppercase tracking-[0.5em] mb-6 md:mb-8 text-gray-400">The Wedding Of</h3>
             <div class="overflow-hidden mb-8">
                 <h1 class="font-header hero-title uppercase scroll-reveal italic" style="transition-delay: 200ms;">
                     {{ $invitation->groom_name }}

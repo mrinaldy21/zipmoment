@@ -174,21 +174,6 @@
                 <a href="#pricing" class="w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 glass text-[var(--text-primary)] font-black uppercase tracking-[0.2em] text-[10px] md:text-xs rounded-full hover:bg-white/10 transition-all duration-500">Explore Collection</a>
             </div>
 
-            <!-- Enhanced Trust Bar -->
-            <div class="cinematic-reveal mt-32 pt-16 border-t border-[var(--glass-border)] flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-1000" style="animation-delay: 0.8s">
-                <div class="flex flex-col items-center">
-                    <span class="text-4xl font-outfit font-black tracking-tighter mb-2">500+</span>
-                    <span class="text-[9px] font-black uppercase tracking-[0.3em] text-amber-500/80">Premium Couples</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-4xl font-outfit font-black tracking-tighter mb-2 italic">Excl.</span>
-                    <span class="text-[9px] font-black uppercase tracking-[0.3em] text-amber-500/80">Boutique Service</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <span class="text-4xl font-outfit font-black tracking-tighter mb-2">Bali</span>
-                    <span class="text-[9px] font-black uppercase tracking-[0.3em] text-amber-500/80">Jakarta & Beyond</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -344,7 +329,7 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                             
                             <!-- Hover Overlay -->
-                            <a href="{{ route('invitation.show', 'demo-modern') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
+                            <a href="{{ route('invitation.show', 'jessi-maudy-modern') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm bg-black/40">
                                 <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
                                     <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                 </div>
@@ -454,7 +439,7 @@
                         <div class="aspect-[3/4] overflow-hidden relative">
                             <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Cinematic Theme" class="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-[4s] opacity-60">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                            <a href="{{ route('invitation.show', 'demo-cinematic') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-400 backdrop-blur-sm bg-black/40">
+                            <a href="{{ route('invitation.show', 'jessi-maudy-cinematic') }}" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-400 backdrop-blur-sm bg-black/40">
                                 <div class="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-700">
                                     <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                 </div>
@@ -518,234 +503,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center mb-16 md:mb-24 px-4">
-                <div class="inline-block px-4 py-1 bg-white/5 border border-white/10 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] text-white/40 mb-6">Trusted by 500+ Couples</div>
-                <h2 class="text-4xl md:text-7xl font-serif italic font-black tracking-tighter mb-8 leading-tight">Eksklusivitas Yang Diakui Di<br> <span class="lux-gradient">Seluruh Indonesia.</span></h2>
-                <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/30 px-6">
-                    <span class="hover:text-amber-500 transition-colors">Jakarta</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Bandung</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Surabaya</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Bali</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Medan</span>
-                </div>
-            </div>
             
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-20 md:mb-32 px-4 md:px-0">
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Aditya & Siska — JAKARTA</span>
-                    </div>
-                </div>
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass md:translate-y-12">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Reza & Indah — BALI</span>
-                    </div>
-                </div>
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Dimas & Rara — BANDUNG</span>
-                    </div>
-                </div>
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass md:translate-y-12">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Kevin & Nadya — SURABAYA</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-40 grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div class="glass p-12 rounded-[50px] space-y-8 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3602 2 17.017 2H18.017C18.5693 2 19.017 2.44772 19.017 3V4C19.017 4.55228 18.5693 5 18.017 5H17.017C16.4647 5 16.017 5.44772 16.017 6V8H19.017C20.6739 8 22.017 9.34315 22.017 11V15C22.017 16.6569 20.6739 18 19.017 18H16.017L16.017 21H14.017ZM2.017 21L2.017 18C2.017 16.8954 2.91243 16 4.017 16H7.017C7.56928 16 8.017 15.5523 8.017 15V9C8.017 8.44772 7.56928 8 7.017 8H4.017C2.91243 8 2.017 7.10457 2.017 6V5C2.017 3.34315 3.36015 2 5.017 2H6.017C6.56928 2 7.017 2.44772 7.017 3V4C7.017 4.55228 6.56928 5 6.017 5H5.017C4.46472 5 4.017 5.44772 4.017 6V8H7.017C8.67385 8 10.017 9.34315 10.017 11V15C10.017 16.6569 8.67385 18 7.017 18H4.017L4.017 21H2.017Z"/></svg>
-                    </div>
-                    <div class="flex text-amber-500">
-                        @for($i=0; $i<5; $i++)<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>@endfor
-                    </div>
-                    <p class="text-xl font-serif italic text-white/80 leading-relaxed">"Undangannya benar-benar mahal sekali kelihatannya. Tamu-tamu saya pada tanya bikin di mana. Benar-benar eksklusif!"</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10"></div>
-                        <div>
-                            <span class="text-[10px] font-black uppercase tracking-widest block">Amanda & Rizky</span>
-                            <span class="text-[8px] font-medium text-white/20 uppercase tracking-widest">Wedding 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-12 rounded-[50px] space-y-8 relative overflow-hidden group lg:translate-y-8">
-                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3602 2 17.017 2H18.017C18.5693 2 19.017 2.44772 19.017 3V4C19.017 4.55228 18.5693 5 18.017 5H17.017C16.4647 5 16.017 5.44772 16.017 6V8H19.017C20.6739 8 22.017 9.34315 22.017 11V15C22.017 16.6569 20.6739 18 19.017 18H16.017L16.017 21H14.017ZM2.017 21L2.017 18C2.017 16.8954 2.91243 16 4.017 16H7.017C7.56928 16 8.017 15.5523 8.017 15V9C8.017 8.44772 7.56928 8 7.017 8H4.017C2.91243 8 2.017 7.10457 2.017 6V5C2.017 3.34315 3.36015 2 5.017 2H6.017C6.56928 2 7.017 2.44772 7.017 3V4C7.017 4.55228 6.56928 5 6.017 5H5.017C4.46472 5 4.017 5.44772 4.017 6V8H7.017C8.67385 8 10.017 9.34315 10.017 11V15C10.017 16.6569 8.67385 18 7.017 18H4.017L4.017 21H2.017Z"/></svg>
-                    </div>
-                    <div class="flex text-amber-500">
-                        @for($i=0; $i<5; $i++)<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>@endfor
-                    </div>
-                    <p class="text-xl font-serif italic text-white/80 leading-relaxed">"Satu kata: Cinematic. Transisinya sekelas butik undangan internasional. Best investment for our wedding!"</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10"></div>
-                        <div>
-                            <span class="text-[10px] font-black uppercase tracking-widest block">Bima & Citra</span>
-                            <span class="text-[8px] font-medium text-white/20 uppercase tracking-widest">Wedding 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-12 rounded-[50px] space-y-8 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3602 2 17.017 2H18.017C18.5693 2 19.017 2.44772 19.017 3V4C19.017 4.55228 18.5693 5 18.017 5H17.017C16.4647 5 16.017 5.44772 16.017 6V8H19.017C20.6739 8 22.017 9.34315 22.017 11V15C22.017 16.6569 20.6739 18 19.017 18H16.017L16.017 21H14.017ZM2.017 21L2.017 18C2.017 16.8954 2.91243 16 4.017 16H7.017C7.56928 16 8.017 15.5523 8.017 15V9C8.017 8.44772 7.56928 8 7.017 8H4.017C2.91243 8 2.017 7.10457 2.017 6V5C2.017 3.34315 3.36015 2 5.017 2H6.017C6.56928 2 7.017 2.44772 7.017 3V4C7.017 4.55228 6.56928 5 6.017 5H5.017C4.46472 5 4.017 5.44772 4.017 6V8H7.017C8.67385 8 10.017 9.34315 10.017 11V15C10.017 16.6569 8.67385 18 7.017 18H4.017L4.017 21H2.017Z"/></svg>
-                    </div>
-                    <div class="flex text-amber-500">
-                        @for($i=0; $i<5; $i++)<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>@endfor
-                    </div>
-                    <p class="text-xl font-serif italic text-white/80 leading-relaxed">"Tidak sangka harga segini bisa dapat kualitas se-premium ini. ZipMoment benar-benar game changer!"</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10"></div>
-                        <div>
-                            <span class="text-[10px] font-black uppercase tracking-widest block">Reno & Vania</span>
-                            <span class="text-[8px] font-medium text-white/20 uppercase tracking-widest">Wedding 2024</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-20 md:py-40 relative">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            <div class="text-center mb-20 md:mb-32">
-                <div class="inline-block px-4 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-6">Investment Packages</div>
-                <h2 class="text-4xl md:text-7xl font-serif italic font-black mb-8 tracking-tighter leading-tight">Investasi Untuk<br> <span class="lux-gradient">Moment Tak Terlupakan.</span></h2>
-                <div class="flex flex-col items-center space-y-4 px-4">
-                    <p class="text-base md:text-xl text-[var(--text-muted)] font-outfit font-light italic">"Hanya untuk mereka yang menginginkan kesempurnaan di setiap pixel."</p>
-                    <div class="flex items-center space-x-3 text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-amber-500/60 font-black text-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse flex-shrink-0"></span>
-                        <span>Kami menerima jumlah pasangan terbatas setiap minggu.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-stretch">
-                @php
-                    function waLink($package, $price, $number) {
-                        $msg = "Halo ZipMoment, saya ingin membuat undangan yang membuat tamu saya terkesan.\n\nSaya tertarik dengan paket: {$package}\n\nMohon bantu saya mewujudkan pernikahan impian.";
-                        return "https://wa.me/{$number}?text=" . rawurlencode($msg);
-                    }
-                @endphp
-                <!-- Package 1: Basic -->
-                <div class="flex flex-col p-12 rounded-[50px] glass hover:bg-amber-500/[0.02] transition-all duration-700 group relative overflow-hidden">
-                    <div class="mb-12 text-center">
-                        <span class="text-[9px] font-black uppercase tracking-[0.5em] text-[var(--text-muted)] mb-4 block">THE ESSENTIAL</span>
-                        <h3 class="text-3xl font-serif italic font-bold mb-6 tracking-tighter">Standard</h3>
-                        <div class="flex flex-col items-center">
-                            <span class="text-xs text-[var(--text-muted)] line-through mb-2 tracking-widest opacity-30">IDR 69,000</span>
-                            <div class="flex items-baseline justify-center">
-                                <span class="text-5xl font-outfit font-black tracking-tighter italic">49<span class="text-lg font-light ml-1 opacity-40">k</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-6 mb-16 flex-1 text-[11px] font-outfit font-light tracking-wide text-[var(--text-primary)] opacity-60">
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-amber-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Selection of Standard Theme
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-amber-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Ambient Music Player
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-amber-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Event Details & Maps
-                        </li>
-                        <li class="flex items-center opacity-30 italic">
-                            <svg class="w-4 h-4 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            Watermark Included
-                        </li>
-                    </ul>
-
-                    <a href="{{ waLink('Standard', '49k', $waNumber) }}" target="_blank" class="w-full py-5 text-center glass border-[var(--glass-border)] font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl hover:bg-amber-500/10 transition-all duration-500">Pesan Essential</a>
-                </div>
-
-                <!-- Package 2: Premium (Signature) -->
-                <div class="flex flex-col p-12 rounded-[50px] border-2 border-amber-500/30 bg-gradient-to-br from-amber-500/[0.08] to-transparent hover:from-amber-500/[0.12] transition-all duration-700 group relative md:scale-110 shadow-[0_0_100px_rgba(251,191,36,0.05)] overflow-hidden">
-                    <div class="absolute top-0 right-12 py-3 px-8 bg-amber-500 text-black text-[9px] font-black uppercase tracking-[0.4em] rounded-b-3xl">Most Preferred</div>
-                    
-                    <div class="mb-12 text-center">
-                        <span class="text-[9px] font-black uppercase tracking-[0.5em] text-amber-500 mb-4 block">THE EXCLUSIVE</span>
-                        <h3 class="text-4xl font-serif italic font-black mb-6 tracking-tighter text-amber-100 italic">Signature</h3>
-                        <div class="flex flex-col items-center">
-                            <span class="text-xs text-amber-500/20 line-through mb-2 tracking-widest">IDR 149,000</span>
-                            <div class="flex items-baseline justify-center">
-                                <span class="text-7xl font-outfit font-black tracking-tighter text-amber-500 italic leading-none">99<span class="text-2xl font-light ml-1 opacity-40">k</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-6 mb-16 flex-1 text-[12px] font-outfit font-medium tracking-wide text-white/80">
-                        <li class="flex items-center text-amber-400">
-                            <svg class="w-5 h-5 mr-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                            Unlock All Premium Themes
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Unlimited Photo Gallery
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Interactive RSVP Studio
-                        </li>
-                        <li class="flex items-center text-amber-300 font-black italic tracking-widest">
-                            <svg class="w-5 h-5 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            NO WATERMARK
-                        </li>
-                    </ul>
-
-                    <a href="{{ waLink('Signature', '99k', $waNumber) }}" target="_blank" class="w-full py-6 text-center bg-amber-500 text-black font-black uppercase text-xs tracking-[0.3em] rounded-2xl hover:scale-105 transition-all duration-500 shadow-2xl shadow-amber-500/20">Claim Signature Promo</a>
-                </div>
-
-                <!-- Package 3: Exclusive -->
-                <div class="flex flex-col p-8 md:p-12 rounded-[40px] md:rounded-[50px] glass hover:bg-indigo-500/[0.02] transition-all duration-700 group relative overflow-hidden">
-                    <div class="mb-10 md:mb-12 text-center">
-                        <span class="text-[8px] md:text-[9px] font-black uppercase tracking-[0.5em] text-indigo-400 mb-4 block">THE MAJESTY</span>
-                        <h3 class="text-2xl md:text-3xl font-serif italic font-bold mb-4 md:mb-6 tracking-tighter italic">Majesty Kit</h3>
-                        <div class="flex flex-col items-center">
-                            <span class="text-[10px] md:text-xs text-indigo-500/20 line-through mb-1 md:mb-2 tracking-widest">IDR 299,000</span>
-                            <div class="flex items-baseline justify-center">
-                                <span class="text-4xl md:text-5xl font-outfit font-black tracking-tighter italic">249<span class="text-lg font-light ml-1 opacity-40">k</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 md:space-y-6 mb-12 md:mb-16 flex-1 text-[10px] md:text-[11px] font-outfit font-light tracking-wide text-[var(--text-primary)] opacity-60">
-                        <li class="flex items-center text-indigo-500 font-black">
-                            <svg class="w-4 h-4 mr-3 md:mr-4 text-indigo-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                            CUSTOM DOMAIN (.com)
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-3 md:mr-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            VIP Cinematic Animations
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-3 md:mr-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Concierge Design Support
-                        </li>
-                    </ul>
-
-                    <a href="{{ waLink('Majesty', '249k', $waNumber) }}" target="_blank" class="w-full py-5 text-center border border-indigo-500/20 text-indigo-300 font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl hover:bg-indigo-500/10 transition-all duration-500">Acquire Majesty</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Floating WhatsApp Button (Optimized for Mobile Spacing) -->
     <a href="{{ $waUrl }}" target="_blank" class="fixed bottom-8 md:bottom-12 right-6 md:right-12 z-[100] group">
         <div class="absolute inset-0 bg-amber-500 blur-2xl opacity-20 group-hover:opacity-60 transition-opacity animate-pulse"></div>

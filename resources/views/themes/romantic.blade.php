@@ -63,7 +63,7 @@
     <section class="relative min-h-[90vh] flex flex-col justify-center items-center text-center p-8 bg-gradient-canvas">
         <div class="animate__animated animate__zoomIn">
             <div class="w-20 h-[1px] bg-rose-500/30 mx-auto mb-12"></div>
-            <h3 class="text-[10px] md:text-sm uppercase tracking-[0.5em] text-rose-500 font-bold mb-8">A Journey of Love</h3>
+            <h3 class="md:text-xl md:text-sm uppercase tracking-[0.5em] text-rose-500 font-bold mb-8">The Wedding Of</h3>
             <h1 class="font-serif text-5xl md:text-8xl mb-6 italic">{{ $invitation->groom_name }}</h1>
             <div class="font-serif text-3xl italic opacity-30 my-4">&</div>
             <h1 class="font-serif text-5xl md:text-8xl mb-12 italic">{{ $invitation->bride_name }}</h1>

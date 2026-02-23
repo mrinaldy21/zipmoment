@@ -68,7 +68,7 @@
         @endif
         
         <div class="relative z-10 animate__animated animate__fadeIn px-4">
-            <h3 class="text-[10px] uppercase tracking-[0.5em] mb-6 md:mb-8 text-gray-400">Union of Two Souls</h3>
+            <h3 class="md:text-xl uppercase tracking-[0.5em] mb-6 md:mb-8 text-gray-400">The Wedding Of</h3>
             <div class="space-y-4 mb-10 md:mb-12">
                 <h1 class="font-serif text-4xl md:text-8xl text-white uppercase break-words">{{ $invitation->groom_name }}</h1>
                 <p class="text-xl md:text-6xl font-thin text-gray-500 italic">&</p>
