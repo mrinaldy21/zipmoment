@@ -153,34 +153,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- Love Story Section -->
-        @if($invitation->loveStories->count() > 0)
-        <div class="py-40 bg-black">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center mb-32 scroll-reveal text-amber-500 font-header">
-                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-widest italic">Our Narrative</h2>
-                    <div class="h-px w-40 bg-current mx-auto mt-8 opacity-20"></div>
-                </div>
-
-                <div class="space-y-1">
-                    @foreach($invitation->loveStories as $story)
-                        <div class="scroll-reveal group relative h-[50vh] md:h-[70vh] overflow-hidden">
-                            @if($story->photo_url)
-                                <img src="{{ $story->photo_url }}" class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition duration-[3s]">
-                            @endif
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex items-end p-12 md:p-24">
-                                <div class="max-w-2xl">
-                                    <h4 class="font-header text-3xl md:text-5xl font-black uppercase mb-6 text-amber-500 italic">{{ $story->title }}</h4>
-                                    <p class="text-xs md:text-sm text-white/70 leading-loose uppercase tracking-[0.2em]">{{ $story->description }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        @endif
+    </section>
 
     <!-- Events with Luxurious Reveal -->
     <section class="py-40 bg-[var(--bg-cinematic)]">
@@ -214,34 +187,33 @@
         </div>
     </section>
 
-        <!-- Wedding Gift Section -->
-        @if($invitation->gift_bank_pria || $invitation->gift_bank_wanita)
-        <div class="py-40 bg-black/80">
-            <div class="max-w-5xl mx-auto px-6 text-center">
-                <div class="scroll-reveal mb-24">
-                    <h2 class="font-header text-4xl md:text-6xl font-black uppercase tracking-widest text-amber-500 italic">Curated Gifts</h2>
-                    <p class="text-[10px] md:text-xs text-white/30 uppercase tracking-[0.5em] mt-8">Your presence is our primary gift. Should you wish to express more:</p>
-                </div>
+    <!-- Love Story Section -->
+    @if($invitation->loveStories->count() > 0)
+    <div class="py-40 bg-black">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-32 scroll-reveal text-amber-500 font-header">
+                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-widest italic">Our Narrative</h2>
+                <div class="h-px w-40 bg-current mx-auto mt-8 opacity-20"></div>
+            </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-1 max-w-4xl mx-auto bg-amber-500/10">
-                    @if($invitation->gift_bank_pria)
-                    <div class="p-16 bg-black flex flex-col items-center justify-center">
-                        <span class="text-amber-500/40 font-black text-[10px] uppercase tracking-[0.4em] mb-8">Paternal Transfer</span>
-                        <h4 class="font-header text-2xl md:text-3xl font-black text-white mb-2 italic tracking-widest">{{ $invitation->gift_bank_pria }}</h4>
-                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">{{ $invitation->gift_bank_pria_name }}</p>
+            <div class="space-y-1">
+                @foreach($invitation->loveStories as $story)
+                    <div class="scroll-reveal group relative h-[50vh] md:h-[70vh] overflow-hidden">
+                        @if($story->photo_url)
+                            <img src="{{ $story->photo_url }}" class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition duration-[3s]">
+                        @endif
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex items-end p-12 md:p-24">
+                            <div class="max-w-2xl">
+                                <h4 class="font-header text-3xl md:text-5xl font-black uppercase mb-6 text-amber-500 italic">{{ $story->title }}</h4>
+                                <p class="text-xs md:text-sm text-white/70 leading-loose uppercase tracking-[0.2em]">{{ $story->description }}</p>
+                            </div>
+                        </div>
                     </div>
-                    @endif
-                    @if($invitation->gift_bank_wanita)
-                    <div class="p-16 bg-black flex flex-col items-center justify-center">
-                        <span class="text-amber-500/40 font-black text-[10px] uppercase tracking-[0.4em] mb-8">Maternal Transfer</span>
-                        <h4 class="font-header text-2xl md:text-3xl font-black text-white mb-2 italic tracking-widest">{{ $invitation->gift_bank_wanita }}</h4>
-                        <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">{{ $invitation->gift_bank_wanita_name }}</p>
-                    </div>
-                    @endif
-                </div>
+                @endforeach
             </div>
         </div>
-        @endif
+    </div>
+    @endif
 
     <!-- Immersive Gallery -->
     <section class="py-40 bg-black">
@@ -253,6 +225,35 @@
             @endforeach
         </div>
     </section>
+
+    <!-- Wedding Gift Section -->
+    @if($invitation->gift_bank_pria || $invitation->gift_bank_wanita)
+    <div class="py-40 bg-black/80">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="scroll-reveal mb-24">
+                <h2 class="font-header text-4xl md:text-6xl font-black uppercase tracking-widest text-amber-500 italic">Curated Gifts</h2>
+                <p class="text-[10px] md:text-xs text-white/30 uppercase tracking-[0.5em] mt-8">Your presence is our primary gift. Should you wish to express more:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 max-w-4xl mx-auto bg-amber-500/10">
+                @if($invitation->gift_bank_pria)
+                <div class="p-16 bg-black flex flex-col items-center justify-center">
+                    <span class="text-amber-500/40 font-black text-[10px] uppercase tracking-[0.4em] mb-8">Paternal Transfer</span>
+                    <h4 class="font-header text-2xl md:text-3xl font-black text-white mb-2 italic tracking-widest">{{ $invitation->gift_bank_pria }}</h4>
+                    <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">{{ $invitation->gift_bank_pria_name }}</p>
+                </div>
+                @endif
+                @if($invitation->gift_bank_wanita)
+                <div class="p-16 bg-black flex flex-col items-center justify-center">
+                    <span class="text-amber-500/40 font-black text-[10px] uppercase tracking-[0.4em] mb-8">Maternal Transfer</span>
+                    <h4 class="font-header text-2xl md:text-3xl font-black text-white mb-2 italic tracking-widest">{{ $invitation->gift_bank_wanita }}</h4>
+                    <p class="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">{{ $invitation->gift_bank_wanita_name }}</p>
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
+    @endif
 
     <!-- Guestbook Section -->
     <section class="py-40 bg-black border-y border-white/5">
@@ -266,14 +267,25 @@
     </section>
 
     <!-- Footer: The End Credits -->
-    <footer class="py-40 bg-[var(--bg-cinematic)] text-center">
-        <div class="scroll-reveal">
-            <h2 class="font-header text-xl md:text-3xl font-black uppercase tracking-[0.5em] mb-20 opacity-20 italic">Curated Memories</h2>
-            <div class="flex flex-col items-center">
-                <img src="{{ asset('images/logo.png') }}" alt="ZipMoment" class="h-10 opacity-40 grayscale rounded-xl shadow-2xl mb-8">
-                <p class="text-[9px] font-black uppercase tracking-[0.8em] opacity-30">An Exclusive Presentation by ZipMoment Studio</p>
-            </div>
+    <footer class="py-16 text-center border-t border-gray-900 bg-stone-950">
+        <h3 class="font-header text-2xl text-white mb-4 tracking-widest">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
+        @if($invitation->is_watermark_enabled)
+        <div class="mt-12 pt-12 border-t border-gray-900 flex flex-col items-center group/wm">
+           <span class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-700 mb-4">Architected by</span>
+           <div class="flex items-center space-x-3 grayscale opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-1000 cursor-pointer">
+               <img src="{{ asset('images/logo.png') }}" 
+                    alt="ZipMoment Logo"
+                    class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
+           </div>
+           <p class="text-[9px] text-gray-600 mt-4 font-light tracking-widest uppercase">Experience the peak of digital storytelling at <span class="text-white">zipmoment.id</span></p>
         </div>
+        @endif
+
+        <!-- Boutique Signature (Permanent) -->
+        <div class="mt-12 opacity-10 hover:opacity-60 transition-opacity duration-1000">
+           <span class="text-[8px] font-header italic tracking-[0.4em] text-gray-500 uppercase">Experience by ZipMoment</span>
+        </div>
+        <p class="text-[10px] uppercase tracking-widest text-gray-600 mt-8">Created for Eternity &bull; {{ date('Y') }}</p>
     </footer>
 
     @include('themes.partials.template_cta')
