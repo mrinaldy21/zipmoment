@@ -39,7 +39,13 @@
             }
         }
 
-        body { font-family: 'Inter', sans-serif; }
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-primary); }
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-outfit { font-family: 'Outfit', sans-serif; }
         
@@ -59,14 +65,11 @@
         /* Cinematic Noise Textures */
         .grain-overlay {
             position: fixed;
-            top: -50%;
-            left: -50%;
-            right: -50%;
-            bottom: -50%;
-            width: 200%;
-            height: 200%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
-            background-repeat: repeat;
             animation: grain 8s steps(10) infinite;
             opacity: var(--noise-opacity);
             visibility: visible;
@@ -108,9 +111,10 @@
         }
     </style>
 </head>
-<body class="bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-500 selection:bg-amber-500 selection:text-black antialiased">
-    <!-- Cinematic Grain Overlay -->
-    <div class="grain-overlay"></div>
+<body class="bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-500 selection:bg-amber-500 selection:text-black antialiased overflow-x-hidden max-w-full">
+    <main class="relative overflow-x-hidden max-w-full">
+        <!-- Cinematic Grain Overlay -->
+        <div class="grain-overlay"></div>
 
     <!-- Navigation -->
     <nav class="fixed w-full z-[60] top-0 py-4 md:py-6 transition-all duration-500 glass md:bg-transparent">
@@ -119,7 +123,7 @@
                 <!-- LOGO PNG -->
                 <img src="{{ asset('images/logo.png') }}" 
                     alt="ZipMoment Logo"
-                    class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
+                    class="h-8 md:h-10 object-contain rounded-xl">
             </div>
             
             <div class="hidden md:flex items-center space-x-12 text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)]">
@@ -141,7 +145,7 @@
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <!-- Luxury Ambient Background -->
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 z-0 overflow-hidden">
             <div class="lens-flare top-[-10%] left-[-10%] animate-pulse"></div>
             <div class="lens-flare bottom-[-10%] right-[-10%] opacity-50"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(251,191,36,var(--flare-opacity))_0%,_transparent_60%)]"></div>
@@ -503,234 +507,22 @@
                     </div>
                 </div>
             </div>
-
-            <div class="text-center mb-16 md:mb-24 px-4">
-                <div class="inline-block px-4 py-1 bg-white/5 border border-white/10 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] text-white/40 mb-6">Trusted by 500+ Couples</div>
-                <h2 class="text-3xl md:text-7xl font-serif italic font-black tracking-tighter mb-8 leading-tight">Eksklusivitas Yang Diakui Di<br> <span class="lux-gradient">Seluruh Indonesia.</span></h2>
-                <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/30 px-6">
-                    <span class="hover:text-amber-500 transition-colors">Jakarta</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Bandung</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Surabaya</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Bali</span>
-                    <span class="opacity-20">•</span>
-                    <span class="hover:text-amber-500 transition-colors">Medan</span>
-                </div>
-            </div>
+        </div>
+    </section>
             
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-20 md:mb-32 px-4 md:px-0">
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Aditya & Siska — JAKARTA</span>
-                    </div>
-                </div>
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass md:translate-y-12">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Reza & Indah — BALI</span>
-                    </div>
-                </div>
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Dimas & Rara — BANDUNG</span>
-                    </div>
-                </div>
-                <div class="group relative aspect-square overflow-hidden rounded-[24px] md:rounded-[40px] glass md:translate-y-12">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80" alt="Client Gallery" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] scale-110 group-hover:scale-100 opacity-40 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] font-black uppercase tracking-widest text-white">Kevin & Nadya — SURABAYA</span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="mt-40 grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
-                <div class="glass p-8 sm:p-12 rounded-[40px] md:rounded-[50px] space-y-8 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity text-amber-500">
-                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3602 2 17.017 2H18.017C18.5693 2 19.017 2.44772 19.017 3V4C19.017 4.55228 18.5693 5 18.017 5H17.017C16.4647 5 16.017 5.44772 16.017 6V8H19.017C20.6739 8 22.017 9.34315 22.017 11V15C22.017 16.6569 20.6739 18 19.017 18H16.017L16.017 21H14.017ZM2.017 21L2.017 18C2.017 16.8954 2.91243 16 4.017 16H7.017C7.56928 16 8.017 15.5523 8.017 15V9C8.017 8.44772 7.56928 8 7.017 8H4.017C2.91243 8 2.017 7.10457 2.017 6V5C2.017 3.34315 3.36015 2 5.017 2H6.017C6.56928 2 7.017 2.44772 7.017 3V4C7.017 4.55228 6.56928 5 6.017 5H5.017C4.46472 5 4.017 5.44772 4.017 6V8H7.017C8.67385 8 10.017 9.34315 10.017 11V15C10.017 16.6569 8.67385 18 7.017 18H4.017L4.017 21H2.017Z"/></svg>
-                    </div>
-                    <div class="flex text-amber-500">
-                        @for($i=0; $i<5; $i++)<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>@endfor
-                    </div>
-                    <p class="text-lg sm:text-xl font-serif italic text-[var(--text-primary)] opacity-80 leading-relaxed">"Undangannya benar-benar mahal sekali kelihatannya. Tamu-tamu saya pada tanya bikin di mana. Benar-benar eksklusif!"</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10"></div>
-                        <div>
-                            <span class="text-[10px] font-black uppercase tracking-widest block">Amanda & Rizky</span>
-                            <span class="text-[8px] font-medium text-[var(--text-muted)] uppercase tracking-widest">Wedding 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-8 sm:p-12 rounded-[40px] md:rounded-[50px] space-y-8 relative overflow-hidden group lg:translate-y-8">
-                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity text-amber-500">
-                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3602 2 17.017 2H18.017C18.5693 2 19.017 2.44772 19.017 3V4C19.017 4.55228 18.5693 5 18.017 5H17.017C16.4647 5 16.017 5.44772 16.017 6V8H19.017C20.6739 8 22.017 9.34315 22.017 11V15C22.017 16.6569 20.6739 18 19.017 18H16.017L16.017 21H14.017ZM2.017 21L2.017 18C2.017 16.8954 2.91243 16 4.017 16H7.017C7.56928 16 8.017 15.5523 8.017 15V9C8.017 8.44772 7.56928 8 7.017 8H4.017C2.91243 8 2.017 7.10457 2.017 6V5C2.017 3.34315 3.36015 2 5.017 2H6.017C6.56928 2 7.017 2.44772 7.017 3V4C7.017 4.55228 6.56928 5 6.017 5H5.017C4.46472 5 4.017 5.44772 4.017 6V8H7.017C8.67385 8 10.017 9.34315 10.017 11V15C10.017 16.6569 8.67385 18 7.017 18H4.017L4.017 21H2.017Z"/></svg>
-                    </div>
-                    <div class="flex text-amber-500">
-                        @for($i=0; $i<5; $i++)<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>@endfor
-                    </div>
-                    <p class="text-lg sm:text-xl font-serif italic text-[var(--text-primary)] opacity-80 leading-relaxed">"Satu kata: Cinematic. Transisinya sekelas butik undangan internasional. Best investment for our wedding!"</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10"></div>
-                        <div>
-                            <span class="text-[10px] font-black uppercase tracking-widest block">Bima & Citra</span>
-                            <span class="text-[8px] font-medium text-[var(--text-muted)] uppercase tracking-widest">Wedding 2024</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-8 sm:p-12 rounded-[40px] md:rounded-[50px] space-y-8 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity text-amber-500">
-                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.34315 15.3602 2 17.017 2H18.017C18.5693 2 19.017 2.44772 19.017 3V4C19.017 4.55228 18.5693 5 18.017 5H17.017C16.4647 5 16.017 5.44772 16.017 6V8H19.017C20.6739 8 22.017 9.34315 22.017 11V15C22.017 16.6569 20.6739 18 19.017 18H16.017L16.017 21H14.017ZM2.017 21L2.017 18C2.017 16.8954 2.91243 16 4.017 16H7.017C7.56928 16 8.017 15.5523 8.017 15V9C8.017 8.44772 7.56928 8 7.017 8H4.017C2.91243 8 2.017 7.10457 2.017 6V5C2.017 3.34315 3.36015 2 5.017 2H6.017C6.56928 2 7.017 2.44772 7.017 3V4C7.017 4.55228 6.56928 5 6.017 5H5.017C4.46472 5 4.017 5.44772 4.017 6V8H7.017C8.67385 8 10.017 9.34315 10.017 11V15C10.017 16.6569 8.67385 18 7.017 18H4.017L4.017 21H2.017Z"/></svg>
-                    </div>
-                    <div class="flex text-amber-500">
-                        @for($i=0; $i<5; $i++)<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>@endfor
-                    </div>
-                    <p class="text-lg sm:text-xl font-serif italic text-[var(--text-primary)] opacity-80 leading-relaxed">"Tidak sangka harga segini bisa dapat kualitas se-premium ini. ZipMoment benar-benar game changer!"</p>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10"></div>
-                        <div>
-                            <span class="text-[10px] font-black uppercase tracking-widest block">Reno & Vania</span>
-                            <span class="text-[8px] font-medium text-[var(--text-muted)] uppercase tracking-widest">Wedding 2024</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-16 sm:py-20 md:py-40 relative">
-        <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-8">
-            <div class="text-center mb-16 md:mb-32">
-                <div class="inline-block px-4 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] mb-6">Investment Packages</div>
-                <h2 class="text-3xl md:text-7xl font-serif italic font-black mb-8 tracking-tighter leading-tight">Investasi Untuk<br> <span class="lux-gradient">Moment Tak Terlupakan.</span></h2>
-                <div class="flex flex-col items-center space-y-4 px-4">
-                    <p class="text-sm md:text-xl text-[var(--text-muted)] font-outfit font-light italic">"Hanya untuk mereka yang menginginkan kesempurnaan di setiap pixel."</p>
-                    <div class="flex items-center space-x-3 text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-amber-500/60 font-black text-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse flex-shrink-0"></span>
-                        <span>Kami menerima jumlah pasangan terbatas setiap minggu.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-                @php
-                    function waLink($package, $price, $number) {
-                        $msg = "Halo ZipMoment, saya ingin membuat undangan yang membuat tamu saya terkesan.\n\nSaya tertarik dengan paket: {$package}\n\nMohon bantu saya mewujudkan pernikahan impian.";
-                        return "https://wa.me/{$number}?text=" . rawurlencode($msg);
-                    }
-                @endphp
-                <!-- Package 1: Basic -->
-                <div class="flex flex-col p-8 sm:p-12 rounded-[40px] md:rounded-[50px] glass hover:bg-amber-500/[0.02] transition-all duration-700 group relative overflow-hidden">
-                    <div class="mb-8 md:mb-12 text-center">
-                        <span class="text-[9px] font-black uppercase tracking-[0.5em] text-[var(--text-muted)] mb-4 block">THE ESSENTIAL</span>
-                        <h3 class="text-2xl md:text-3xl font-serif italic font-bold mb-4 md:mb-6 tracking-tighter">Standard</h3>
-                        <div class="flex flex-col items-center">
-                            <span class="text-[10px] sm:text-xs text-[var(--text-muted)] line-through mb-2 tracking-widest opacity-30">IDR 69,000</span>
-                            <div class="flex items-baseline justify-center">
-                                <span class="text-4xl md:text-5xl font-outfit font-black tracking-tighter italic">49<span class="text-lg font-light ml-1 opacity-40">k</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 md:space-y-6 mb-12 md:mb-16 flex-1 text-[11px] font-outfit font-light tracking-wide text-[var(--text-primary)] opacity-60">
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-amber-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Selection of Standard Theme
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-amber-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Ambient Music Player
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-amber-500/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Event Details & Maps
-                        </li>
-                        <li class="flex items-center opacity-30 italic">
-                            <svg class="w-4 h-4 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            Watermark Included
-                        </li>
-                    </ul>
-
-                    <a href="{{ waLink('Standard', '49k', $waNumber) }}" target="_blank" class="w-full py-4 md:py-5 text-center glass border-[var(--glass-border)] font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl hover:bg-amber-500/10 transition-all duration-500">Pesan Essential</a>
-                </div>
-
-                <!-- Package 2: Premium (Signature) -->
-                <div class="flex flex-col p-8 sm:p-12 rounded-[40px] md:rounded-[50px] border-2 border-amber-500/30 bg-gradient-to-br from-amber-500/[0.08] to-transparent hover:from-amber-500/[0.12] transition-all duration-700 group relative md:scale-110 shadow-[0_0_100px_rgba(251,191,36,0.05)] overflow-hidden">
-                    <div class="absolute top-0 right-12 py-2 md:py-3 px-6 md:px-8 bg-amber-500 text-black text-[8px] md:text-[9px] font-black uppercase tracking-[0.4em] rounded-b-3xl">Most Preferred</div>
-                    
-                    <div class="mb-8 md:mb-12 text-center">
-                        <span class="text-[9px] font-black uppercase tracking-[0.5em] text-amber-500 mb-4 block">THE EXCLUSIVE</span>
-                        <h3 class="text-3xl md:text-4xl font-serif italic font-black mb-4 md:mb-6 tracking-tighter text-amber-100 italic">Signature</h3>
-                        <div class="flex flex-col items-center">
-                            <span class="text-[10px] sm:text-xs text-amber-500/20 line-through mb-2 tracking-widest">IDR 149,000</span>
-                            <div class="flex items-baseline justify-center">
-                                <span class="text-6xl md:text-7xl font-outfit font-black tracking-tighter text-amber-500 italic leading-none">99<span class="text-xl md:text-2xl font-light ml-1 opacity-40">k</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 md:space-y-6 mb-12 md:mb-16 flex-1 text-[11px] md:text-[12px] font-outfit font-medium tracking-wide text-[var(--text-primary)] opacity-80">
-                        <li class="flex items-center text-amber-500">
-                            <svg class="w-5 h-5 mr-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                            Unlock All Premium Themes
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Unlimited Photo Gallery
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 mr-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Interactive RSVP Studio
-                        </li>
-                        <li class="flex items-center text-amber-500 font-black italic tracking-widest">
-                            <svg class="w-5 h-5 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                            NO WATERMARK
-                        </li>
-                    </ul>
-
-                    <a href="{{ waLink('Signature', '99k', $waNumber) }}" target="_blank" class="w-full py-5 md:py-6 text-center bg-amber-500 text-black font-black uppercase text-[10px] md:text-xs tracking-[0.3em] rounded-2xl hover:scale-105 transition-all duration-500 shadow-2xl shadow-amber-500/20">Claim Signature Promo</a>
-                </div>
-
-                <!-- Package 3: Exclusive -->
-                <div class="flex flex-col p-8 sm:p-12 rounded-[40px] md:rounded-[50px] glass hover:bg-indigo-500/[0.02] transition-all duration-700 group relative overflow-hidden">
-                    <div class="mb-8 md:mb-12 text-center">
-                        <span class="text-[9px] font-black uppercase tracking-[0.5em] text-indigo-400 mb-4 block">THE MAJESTY</span>
-                        <h3 class="text-2xl md:text-3xl font-serif italic font-bold mb-4 md:mb-6 tracking-tighter italic">Majesty Kit</h3>
-                        <div class="flex flex-col items-center">
-                            <span class="text-[10px] sm:text-xs text-indigo-400/20 line-through mb-2 tracking-widest">IDR 299,000</span>
-                            <div class="flex items-baseline justify-center">
-                                <span class="text-4xl md:text-5xl font-outfit font-black tracking-tighter italic">249<span class="text-lg font-light ml-1 opacity-40">k</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <ul class="space-y-4 md:space-y-6 mb-12 md:mb-16 flex-1 text-[11px] font-outfit font-light tracking-wide text-[var(--text-primary)] opacity-60">
-                        <li class="flex items-center text-indigo-400 font-black">
-                            <svg class="w-4 h-4 mr-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                            CUSTOM DOMAIN (.com)
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            VIP Cinematic Animations
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-4 h-4 mr-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Concierge Design Support
-                        </li>
-                    </ul>
-
-                    <a href="{{ waLink('Majesty', '249k', $waNumber) }}" target="_blank" class="w-full py-4 md:py-5 text-center border border-indigo-400/20 text-indigo-300 font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl hover:bg-indigo-400/10 transition-all duration-500">Acquire Majesty</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Back To Top Button -->
+     <a href="#" class="fixed bottom-10 sm:bottom-8 md:bottom-12 right-5 sm:right-6 md:right-12 z-[100] group">
+                <!-- Elegant Arrow Up Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                    class="w-5 h-5" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor" 
+                    stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                </svg>
+    </a>
 
     <!-- Floating WhatsApp Button (Optimized for Mobile Spacing) -->
     <a href="{{ $waUrl }}" target="_blank" class="fixed bottom-6 sm:bottom-8 md:bottom-12 right-5 sm:right-6 md:right-12 z-[100] group">
@@ -753,17 +545,17 @@
             <div class="flex items-center space-x-2">
                 <img src="{{ asset('images/logo.png') }}" 
                     alt="ZipMoment Logo"
-                    class="h-8 md:h-10 object-contain rounded-xl shadow-lg">
+                    class="h-8 md:h-10 object-contain rounded-xl">
             </div>
             
             <p class="text-[var(--text-muted)] text-[8px] md:text-[10px] tracking-[0.2em] font-black uppercase text-center md:text-left">&copy; 2026 ZipMoment Digital Wedding Platform. All Rights Reserved.</p>
             
             <div class="flex items-center space-x-6 text-[var(--text-muted)]">
                 <a href="#" class="hover:text-amber-500 transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4.001 1.791 4.001 4c0 2.21-1.791 4-4.001 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="#" class="hover:text-amber-500 transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
             </div>
         </div>
     </footer>
 
+    </main>
 </body>
 </html>
