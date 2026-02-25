@@ -83,9 +83,10 @@ class InvitationController extends Controller
             'gift_bank_wanita_name' => 'nullable|string|max:255',
             'music_path' => 'nullable|file|mimes:mp3,wav|max:5120',
             'music_title' => 'nullable|string|max:255',
-            'contact_phone' => 'nullable|string|max:255',
             'contact_instagram' => 'nullable|string|max:255',
             'footer_website' => 'nullable|string|max:255',
+            'thank_you_message' => 'nullable|string',
+            'thank_you_image' => 'nullable|image|max:2048',
         ]);
 
         DB::beginTransaction();
@@ -125,6 +126,17 @@ class InvitationController extends Controller
                 if (!$url) throw new \Exception('Gagal mengunggah file musik.');
                 $data['music_path'] = $url;
                 Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'music', 'slug' => $slug, 'admin_id' => auth()->id()]);
+            }
+            if ($request->hasFile('thank_you_image')) {
+                try {
+                    $url = $this->cloudinary->upload($request->file('thank_you_image'), 'zipmoment/closings');
+                    if ($url) {
+                        $data['thank_you_image'] = $url;
+                        Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'thank_you_image', 'slug' => $slug, 'admin_id' => auth()->id()]);
+                    }
+                } catch (\Exception $e) {
+                    Log::error('[INVITATION_CLOSING_UPLOAD_FAILED]', ['slug' => $slug, 'message' => $e->getMessage()]);
+                }
             }
 
             $invitation = Invitation::create($data);
@@ -217,9 +229,10 @@ class InvitationController extends Controller
             'gift_bank_wanita_name' => 'nullable|string|max:255',
             'music_path' => 'nullable|file|mimes:mp3,wav|max:5120',
             'music_title' => 'nullable|string|max:255',
-            'contact_phone' => 'nullable|string|max:255',
             'contact_instagram' => 'nullable|string|max:255',
             'footer_website' => 'nullable|string|max:255',
+            'thank_you_message' => 'nullable|string',
+            'thank_you_image' => 'nullable|image|max:2048',
         ]);
 
         DB::beginTransaction();
@@ -250,6 +263,17 @@ class InvitationController extends Controller
                 if (!$url) throw new \Exception('Gagal mengunggah file musik.');
                 $data['music_path'] = $url;
                 Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'music', 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
+            }
+            if ($request->hasFile('thank_you_image')) {
+                try {
+                    $url = $this->cloudinary->upload($request->file('thank_you_image'), 'zipmoment/closings');
+                    if ($url) {
+                        $data['thank_you_image'] = $url;
+                        Log::info('[INVITATION_MEDIA_UPLOAD]', ['type' => 'thank_you_image', 'slug' => $invitation->slug, 'admin_id' => auth()->id()]);
+                    }
+                } catch (\Exception $e) {
+                    Log::error('[INVITATION_CLOSING_UPLOAD_FAILED]', ['slug' => $invitation->slug, 'message' => $e->getMessage()]);
+                }
             }
 
             $invitation->update($data);
@@ -342,6 +366,12 @@ class InvitationController extends Controller
 
     public function showPublic(Invitation $invitation)
     {
-        return view('themes.' . $invitation->template, compact('invitation'));
+        return view('themes.' . $invitation->template, [
+            'invitation' => $invitation->load(['galleries', 'loveStories', 'events' => function($q) {
+                $q->orderBy('sort_order');
+            }, 'messages' => function($query) {
+                $query->latest();
+            }])
+        ]);
     }
 }

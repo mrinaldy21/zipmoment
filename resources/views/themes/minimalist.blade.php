@@ -203,11 +203,39 @@
         </div>
     </section>
 
+    <!-- Section: Thank You -->
+    @if($invitation->thank_you_message || $invitation->thank_you_image)
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-900">
+        @if($invitation->thank_you_image)
+            <div class="absolute inset-0 z-0">
+                <img src="{{ $invitation->thank_you_image_url }}" class="w-full h-full object-cover grayscale opacity-50">
+                <div class="absolute inset-0 bg-black/60"></div>
+            </div>
+        @endif
+
+        <div class="relative z-10 max-w-2xl mx-auto px-6 text-center text-white scroll-reveal">
+            <h2 class="font-serif italic text-4xl md:text-5xl mb-12 opacity-90">Thanks</h2>
+            
+            @if($invitation->thank_you_message)
+                <div class="mb-16">
+                    <p class="font-sans text-lg md:text-xl leading-relaxed tracking-wide opacity-80">
+                        {{ $invitation->thank_you_message }}
+                    </p>
+                </div>
+            @endif
+
+            <div class="space-y-6">
+                <p class="font-sans uppercase tracking-[0.4em] text-[10px] opacity-50">Hormat Kami Yang Mengundang</p>
+                <h3 class="text-3xl md:text-4xl font-light uppercase tracking-[0.3em]">
+                    {{ strtoupper($invitation->groom_name) }} & {{ strtoupper($invitation->bride_name) }}
+                </h3>
+            </div>
+        </div>
+    </section>
+    @endif
+
     <!-- Footer -->
     <footer class="py-16 px-6 text-center bg-white border-t border-stone-100">
-        <h3 class="text-4xl gold-text mb-8" style="font-family:'Pinyon Script', sans-serif;">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
-        <p class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-12">Thank You for Being Part of Our Day</p>
-        
         <div class="flex flex-col items-center space-y-4">
              @if($invitation->is_watermark_enabled)
              <div class="mt-8 pt-8 border-t border-gray-100 flex flex-col items-center group/wm">

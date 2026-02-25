@@ -67,7 +67,11 @@ class Invitation extends Model
         'package_type',
         'is_watermark_enabled',
         'custom_domain',
-        'gallery_limit',
+        'footer_website',
+        
+        // THANK YOU SECTION
+        'thank_you_message',
+        'thank_you_image',
     ];
 
     public function user()
@@ -222,5 +226,11 @@ class Invitation extends Model
     {
         if ($this->isPremium()) return true;
         return $this->galleries()->count() < $this->gallery_limit;
+    }
+
+    public function getThankYouImageUrlAttribute()
+    {
+        if (!$this->thank_you_image) return null;
+        return str_starts_with($this->thank_you_image, 'http') ? $this->thank_you_image : asset('storage/' . $this->thank_you_image);
     }
 }

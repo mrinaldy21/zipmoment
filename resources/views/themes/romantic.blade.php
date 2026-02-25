@@ -240,8 +240,40 @@
     </div>
 
     <!-- Footer -->
+    <!-- Section: Thank You -->
+    @if($invitation->thank_you_message || $invitation->thank_you_image)
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        @if($invitation->thank_you_image)
+            <div class="absolute inset-0 z-0">
+                <img src="{{ $invitation->thank_you_image_url }}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-rose-950/40 backdrop-blur-[2px]"></div>
+            </div>
+        @else
+            <div class="absolute inset-0 bg-rose-50/50 z-0"></div>
+        @endif
+
+        <div class="relative z-10 max-w-4xl px-6 py-20 text-center text-white scroll-reveal">
+            <h2 class="font-serif italic text-5xl md:text-6xl mb-12 opacity-90">Thanks</h2>
+            
+            @if($invitation->thank_you_message)
+                <div class="mb-12">
+                    <p class="font-serif text-2xl md:text-3xl leading-relaxed italic tracking-tight opacity-90">
+                        "{{ $invitation->thank_you_message }}"
+                    </p>
+                </div>
+            @endif
+
+            <div class="space-y-6">
+                <p class="font-serif text-xl italic opacity-60">Hormat Kami Yang Mengundang</p>
+                <h3 class="font-serif text-5xl md:text-6xl lg:text-7xl tracking-tighter uppercase font-bold px-4">
+                    {{ strtoupper($invitation->groom_name) }} & {{ strtoupper($invitation->bride_name) }}
+                </h3>
+            </div>
+        </div>
+    </section>
+    @endif
+
     <footer class="py-12 bg-white text-center border-t border-pink-100">
-        <h3 class="font-cursive text-3xl text-pink-500 mb-4">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
         @if($invitation->is_watermark_enabled)
         <div class="mt-8 pt-8 border-t border-pink-50 flex flex-col items-center group/wm">
            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-pink-200 mb-2">Beautifully Designed with</span>

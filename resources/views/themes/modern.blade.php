@@ -239,8 +239,42 @@
         </div>
     </section>
 
+    <!-- Section: Thank You -->
+    @if($invitation->thank_you_message || $invitation->thank_you_image)
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        @if($invitation->thank_you_image)
+            <div class="absolute inset-0 z-0 opacity-50">
+                <img src="{{ $invitation->thank_you_image_url }}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
+            </div>
+        @else
+            <div class="absolute inset-0 bg-zinc-950 z-0"></div>
+        @endif
+
+        <div class="relative z-10 max-w-4xl px-6 py-24 text-center text-white scroll-reveal">
+            <h2 class="font-header text-4xl md:text-5xl lg:text-6xl mb-12 opacity-90 uppercase tracking-[0.2em] italic font-black">
+                Thanks
+            </h2>
+
+            @if($invitation->thank_you_message)
+                <div class="mb-16">
+                    <p class="font-header text-xl md:text-2xl leading-relaxed tracking-wider uppercase opacity-80">
+                        {{ $invitation->thank_you_message }}
+                    </p>
+                </div>
+            @endif
+
+            <div class="space-y-6">
+                <p class="text-zinc-500 uppercase tracking-[0.6em] text-[10px] font-bold">Hormat Kami Yang Mengundang</p>
+                <h3 class="text-4xl md:text-5xl lg:text-7xl font-header font-black uppercase tracking-tighter shadow-black drop-shadow-2xl">
+                    {{ strtoupper($invitation->groom_name) }} <span class="text-zinc-700">&</span> {{ strtoupper($invitation->bride_name) }}
+                </h3>
+            </div>
+        </div>
+    </section>
+    @endif
+
     <footer class="py-16 text-center border-t border-gray-900 bg-stone-950">
-        <h3 class="font-header text-2xl text-white mb-4 tracking-widest">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
         @if($invitation->is_watermark_enabled)
         <div class="mt-12 pt-12 border-t border-gray-900 flex flex-col items-center group/wm">
            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-700 mb-4">Architected by</span>

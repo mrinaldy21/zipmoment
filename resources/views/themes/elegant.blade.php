@@ -277,10 +277,43 @@
     </section>
 
     <!-- Footer -->
+    <!-- Section: Thank You -->
+    @if($invitation->thank_you_message || $invitation->thank_you_image)
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Dark Gradient Overlay -->
+        @if($invitation->thank_you_image)
+            <div class="absolute inset-0 z-0">
+                <img src="{{ $invitation->thank_you_image_url }}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
+            </div>
+        @else
+            <div class="absolute inset-0 bg-stone-900 z-0"></div>
+        @endif
+
+        <div class="relative z-10 max-w-4xl px-6 py-20 text-center text-white scroll-reveal">
+            <h2 class="font-cursive text-5xl md:text-6xl mb-8 opacity-90" style="font-family:'Great Vibes', cursive;">
+                Thanks
+            </h2>
+            
+            @if($invitation->thank_you_message)
+                <div class="mb-12">
+                    <p class="font-serif text-lg md:text-xl lg:text-2xl leading-relaxed italic opacity-80">
+                        "{{ $invitation->thank_you_message }}"
+                    </p>
+                </div>
+            @endif
+
+            <div class="space-y-4">
+                <p class="uppercase tracking-[0.4em] text-[10px] md:text-xs opacity-60">Hormat Kami Yang Mengundang</p>
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-widest px-4">
+                    {{ strtoupper($invitation->groom_name) }} & {{ strtoupper($invitation->bride_name) }}
+                </h3>
+            </div>
+        </div>
+    </section>
+    @endif
+
     <footer class="py-16 px-6 text-center bg-white border-t border-stone-100">
-        <h3 class="text-4xl gold-text mb-8" style="font-family:'Pinyon Script', sans-serif;">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
-        <p class="text-xs uppercase tracking-[0.3em] text-gray-400 mb-12">Thank You for Being Part of Our Day</p>
-        
         <div class="flex flex-col items-center space-y-4">
              @if($invitation->is_watermark_enabled)
              <div class="mt-8 pt-8 border-t border-gray-100 flex flex-col items-center group/wm">

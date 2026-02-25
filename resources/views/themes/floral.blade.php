@@ -233,8 +233,40 @@
         @include('themes.partials.guestbook', ['theme' => 'floral'])
     </section>
 
+    <!-- Section: Thank You -->
+    @if($invitation->thank_you_message || $invitation->thank_you_image)
+    <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+        @if($invitation->thank_you_image)
+            <div class="absolute inset-0 z-0">
+                <img src="{{ $invitation->thank_you_image_url }}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+            </div>
+        @else
+            <div class="absolute inset-0 bg-pink-50/50 z-0"></div>
+        @endif
+
+        <div class="relative z-10 max-w-3xl mx-auto px-6 py-20 text-center text-white scroll-reveal">
+            <h2 class="font-cursive text-5xl md:text-6xl mb-8 opacity-90">Thanks</h2>
+            
+            @if($invitation->thank_you_message)
+                <div class="mb-12">
+                    <p class="font-serif text-xl md:text-2xl italic leading-relaxed opacity-90">
+                        "{{ $invitation->thank_you_message }}"
+                    </p>
+                </div>
+            @endif
+
+            <div class="space-y-4">
+                <p class="uppercase tracking-widest text-[10px] font-bold opacity-60">Hormat Kami Yang Mengundang</p>
+                <h3 class="font-bold text-4xl md:text-5xl lg:text-6xl uppercase tracking-tighter">
+                    {{ strtoupper($invitation->groom_name) }} & {{ strtoupper($invitation->bride_name) }}
+                </h3>
+            </div>
+        </div>
+    </section>
+    @endif
+
     <footer class="py-12 bg-white text-center border-t border-pink-100">
-        <h3 class="font-cursive text-3xl text-pink-500 mb-4">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
         @if($invitation->is_watermark_enabled)
         <div class="mt-8 pt-8 border-t border-pink-50 flex flex-col items-center group/wm">
            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-pink-200 mb-2">Beautifully Designed with</span>

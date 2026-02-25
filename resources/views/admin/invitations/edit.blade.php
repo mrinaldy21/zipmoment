@@ -663,6 +663,35 @@
                             </div>
                         </div>
 
+                        <!-- Section: Thank You Section -->
+                        <div class="space-y-6">
+                            <h3 class="text-lg font-bold text-rose-600 border-b pb-2 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                Thank You / Closing Section
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-rose-50/30 p-6 rounded-lg border border-rose-100">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Thank You Message</label>
+                                        <textarea name="thank_you_message" rows="4" placeholder="Ex: Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir..." class="w-full text-sm border-gray-300 rounded-md">{{ old('thank_you_message', $invitation->thank_you_message) }}</textarea>
+                                        <p class="text-[10px] text-gray-400 mt-1 italic">*This message appears at the very end of the invitation.</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Closing Background Image</label>
+                                        @if($invitation->thank_you_image)
+                                            <div class="relative group mb-3 w-40">
+                                                <img src="{{ $invitation->thank_you_image_url }}" class="w-full h-40 object-cover rounded shadow border">
+                                            </div>
+                                        @endif
+                                        <input type="file" name="thank_you_image" class="block w-full text-sm bg-white p-2 rounded border border-rose-200">
+                                        <p class="text-[10px] text-gray-400 mt-1 italic">*High-quality portrait image recommended.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Section: Footer Info -->
                         <div class="space-y-6">
                             <h3 class="text-lg font-bold text-gray-600 border-b pb-2 flex items-center">

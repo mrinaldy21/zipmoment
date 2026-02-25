@@ -264,9 +264,45 @@
         </div>
     </section>
 
+    <!-- Section: Thank You -->
+    @if($invitation->thank_you_message || $invitation->thank_you_image)
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        @if($invitation->thank_you_image)
+            <div class="absolute inset-0 z-0">
+                <img src="{{ $invitation->thank_you_image_url }}" class="w-full h-full object-cover grayscale brightness-50 parallax-zoom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black"></div>
+            </div>
+        @else
+            <div class="absolute inset-0 bg-black z-0"></div>
+        @endif
+
+        <div class="relative z-10 max-w-6xl px-6 py-24 text-center">
+            <div class="cinematic-reveal mb-12">
+                <h2 class="font-header text-5xl md:text-7xl text-white font-black uppercase italic tracking-widest opacity-80">
+                    Thanks
+                </h2>
+            </div>
+            
+            @if($invitation->thank_you_message)
+                <div class="mb-24 cinematic-reveal">
+                    <p class="font-header text-2xl md:text-4xl lg:text-5xl text-white font-black uppercase italic tracking-tighter leading-tight opacity-70">
+                        "{{ $invitation->thank_you_message }}"
+                    </p>
+                </div>
+            @endif
+
+            <div class="space-y-8 cinematic-reveal">
+                <p class="text-amber-500 font-black text-[10px] md:text-xs uppercase tracking-[0.8em] opacity-60">Hormat Kami Yang Mengundang</p>
+                <h3 class="text-5xl md:text-7xl lg:text-9xl text-white font-header font-black uppercase italic tracking-widest px-4">
+                    {{ strtoupper($invitation->groom_name) }} <span class="text-amber-500">&</span> {{ strtoupper($invitation->bride_name) }}
+                </h3>
+            </div>
+        </div>
+    </section>
+    @endif
+
     <!-- Footer: The End Credits -->
     <footer class="py-16 text-center border-t border-gray-900 bg-stone-950">
-        <h3 class="font-header text-2xl text-white mb-4 tracking-widest">{{ $invitation->groom_name }} & {{ $invitation->bride_name }}</h3>
         @if($invitation->is_watermark_enabled)
         <div class="mt-12 pt-12 border-t border-gray-900 flex flex-col items-center group/wm">
            <span class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-700 mb-4">Architected by</span>
