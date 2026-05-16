@@ -99,6 +99,11 @@ class Invitation extends Model
         return $this->hasMany(Event::class)->orderBy('sort_order')->orderBy('date')->orderBy('start_time');
     }
 
+    public function interactiveScenes()
+    {
+        return $this->hasMany(InteractiveScene::class)->orderBy('sort_order');
+    }
+
     /**
      * Accessor for Groom's background text (Child order + Parents)
      */

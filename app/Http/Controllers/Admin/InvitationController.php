@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 class InvitationController extends Controller
 {
     protected $cloudinary;
-    protected $allowedTemplates = ['elegant', 'floral', 'modern', 'minimalist', 'romantic', 'cinematic'];
+    protected $allowedTemplates = ['elegant', 'floral', 'modern', 'minimalist', 'romantic', 'cinematic', 'interactive'];
 
     public function __construct(CloudinaryService $cloudinary)
     {

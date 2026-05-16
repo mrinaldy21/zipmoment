@@ -44,6 +44,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('invitations', AdminInvitationController::class);
     Route::resource('invitations.stories', LoveStoryController::class)->shallow();
     Route::resource('invitations.events', EventController::class)->shallow();
+    
+    // Interactive Module Routes
+    Route::resource('invitations.interactive', \App\Http\Controllers\Admin\InteractiveController::class)->shallow();
+    Route::post('invitations/{invitation}/interactive/{scene}/hotspots', [\App\Http\Controllers\Admin\InteractiveController::class, 'storeHotspot'])->name('interactive.hotspots.store');
+    Route::put('invitations/{invitation}/interactive/{scene}/hotspots/{hotspot}', [\App\Http\Controllers\Admin\InteractiveController::class, 'updateHotspot'])->name('interactive.hotspots.update');
+    Route::patch('invitations/{invitation}/interactive/{scene}/hotspots/{hotspot}/position', [\App\Http\Controllers\Admin\InteractiveController::class, 'updateHotspotPosition'])->name('interactive.hotspots.updatePosition');
+    Route::delete('invitations/{invitation}/interactive/{scene}/hotspots/{hotspot}', [\App\Http\Controllers\Admin\InteractiveController::class, 'destroyHotspot'])->name('interactive.hotspots.destroy');
     Route::resource('users', UserController::class);
     Route::delete('gallery/{gallery}', [AdminInvitationController::class, 'destroyGallery'])->name('gallery.destroy');
 });
